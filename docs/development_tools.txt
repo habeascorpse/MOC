@@ -1,0 +1,22 @@
+ #technologies
+ #############
+Java
+JPA
+Angular JS 1.*
+JSON
+CSS 3
+HTML 5
+Java Script
+Postgresql 9.3
+Hibernate
+
+
+#platform and tools
+###################
+Ubuntu
+Fedora
+Netbeans 8.*
+VIM
+PGAdmin3
+
+
