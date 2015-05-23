@@ -6,16 +6,19 @@
 package com.er.moc.eca.model.entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -45,27 +48,69 @@ public class MocUser implements Serializable {
     @NotNull
     private String login;
     
+    @Column
+    private String password;
     
+    @ManyToMany
+    private List<MocUser> contacts;
+    
+    @XmlElement(name = "country")
     @ManyToOne
     @JoinColumn(referencedColumnName = "id")
     private Country country;
+    
+    @Column(nullable = false)
+    private Integer status;
 
     public MocUser(String name, String email, String login, Country country) {
         this.name = name;
         this.email = email;
         this.login = login;
         this.country = country;
+        this.status = -1;
     }
 
     public MocUser() {
+        this.status = -1;
     }
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+    
+
     public String getName() {
         return name;
+    }
+    
+    @XmlTransient
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<MocUser> getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(List<MocUser> contacts) {
+        this.contacts = contacts;
+    }
+    
+    @XmlTransient
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public void setName(String name) {
