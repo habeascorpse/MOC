@@ -3,3 +3,197 @@
     Author     : bruce
 */
 
+*{
+    line-height: 1;
+}
+ul{
+    list-style: none;
+}
+
+body{
+    background: #f9f9f9;
+    font-family: 'Lato', sans-serif;
+
+}
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+.content{
+    margin: 2em auto 0;
+    box-shadow: 1px 2px 0 1px #f1f1f1;
+
+}
+.wrapper{
+    background: #fff;
+    width: 55em;
+}
+
+.moc-logo{
+    width: 100%;
+    background: #2f417e;
+    color: #fff;
+}
+.moc-logo, .moc-logo h1, .moc-logo h2, .form-sign-on h1{
+    font-weight: 300;
+}
+.moc-logo p{
+    font-size: 1.5em;
+}
+.form-sign-on{
+    width: 100%;
+}
+
+footer{
+    background: #f5f5f5;
+    border-top: solid 1px #ccc;
+    margin-top: 2em;
+}
+footer li{
+    display: inline;
+    font-size: .8em;
+}
+
+/*Media queries*/
+@media screen and (min-width: 1em) and (max-width: 29.9999em){
+    .content{
+        margin-top: 0;
+        text-align: center;   
+    }
+    p{
+        display: none;
+        visibility: hidden;
+        overflow: hidden;
+    }
+    .wrapper{
+        width: 100%;
+    }
+    footer ul{
+        text-align: left;
+        padding: 1em 0;
+        margin: 0 5%;
+        width: 100%;
+    }
+    footer a{
+        color: #444;
+        padding: 0 .5em;
+    }
+    label{ width: 90%; padding: .4em 0;  text-align: left; margin: 0 5%;}
+    input[type="text"], input[type="email"], input[type="submit"]{
+        width: 90%;
+        margin: 0 5% .4em;
+        border-radius:4px;
+    }
+    input[type="submit"]{
+        margin-top:  1em;
+    }
+}
+
+
+@media screen and (min-width: 30em) and (max-width: 50.9999em){
+    .content{
+        width: 70%;
+        text-align: center;
+        border-radius: 5px;
+    }
+    p{
+        display: none;
+        visibility: hidden;
+        overflow: hidden;
+    }
+    footer{
+        margin-top: 5em;
+    }
+    footer ul{
+        text-align: left;
+        padding: 1em 0;
+        margin: 0 5%;
+    }
+    footer a{
+        color: #444;
+        padding: 0 .5em;
+    }
+    label{ width: 90%; display: block; padding: .4em 0; color: #444; text-align: left; margin: 0 5%;}
+    input[type="text"],input[type="email"], input[type="submit"]{
+        width: 90%;
+        margin: 0 5% .4em;
+        border-radius:4px;
+    }
+    input[type="submit"]{
+        margin-top:  1em;
+    }
+}
+
+
+@media screen and (min-width: 51em){
+    .content{
+        margin-top: 4em;
+        box-shadow:none;
+        border: solid 1px #ccc;
+        line-height: .8;
+
+    }
+    .moc-logo{
+        width: 40%;
+        float: left;
+        height: 320px;
+        padding: 2em;
+        vertical-align: middle;
+        background: none;
+    }
+    .moc-logo h1{
+        font-size: 3em;
+        margin: 0;
+        color: #2f417e;
+    }
+    .moc-logo h2{
+        font-size: 2em;
+        color: #222;
+    }
+    .moc-logo p{
+        font-style: italic;
+        font-size: 1.2em;
+        color: #111;
+    }
+    p.eff{
+        font-size: 1.5em;
+        font-style: normal;
+        color: #798ccd;
+        font-weight: 400;
+    }
+    .form-sign-on{
+        width: 60%;
+        float: left;
+        padding: 0 5% 0 15%;
+    }
+    .form-sign-on h1 {font-weight: normal;}
+
+    input[type="text"],input[type="email"], input[type="submit"]{
+        padding: .9em;
+        font-size: 1em;
+    }
+
+    input[type="submit"]{
+        margin-top:  1em;
+    }
+
+    footer{
+        width: 100%;
+        float: left;
+    }
+}

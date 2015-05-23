@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html class="no-js" lang="pt-br">
     <head>
-        <title>Welcome to MOC</title>
+        <title>MOC : cloud messenger</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <meta name=HandheldFriendly content=True>
+        <meta name=MobileOptimized content=320>
+
         <!-- Stylesheets -->
-        <link href="assets/css/normalize.css" rel="stylesheet" />
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+       
         <link href="assets/css/style.css" rel="stylesheet" />
+        <link href="assets/css/form.css" rel="stylesheet" />
+        <link href="assets/css/normalize.css" rel="stylesheet" />
 
         <script src="assets/js/modernizr.js"></script>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="content wrapper clearfix">
+            <div class="moc-logo clearfix">
+                <h1>MOC</h1>
+                <h2>Messenger on Cloud </h2>
+                <p>talk to anyone anywhere in the world</p>
+                <p class="eff">Easy, fast and free!</p>
+                
+            </div>
+            <div class="form-sign-on clearfix">
+                <h1>Sing on</h1>
+                <form>
+                    <label>Your Name</label>
+                    <input type="text" placeholder="type your full name" required="true" />
+                    <label>Your E-mail</label>
+                    <input type="email" placeholder="type your user" required="true" />
+                    <input type="submit" value="Submit" class="btn-submit" />
+                </form>
+            </div>
+            <footer class="clearfix">
+                <ul>
+                    <li><a href="#" title="something">About</a></li>
+                    <li><a href="#" title="something">Help/Support</a></li>
+                </ul>
+            </footer>
+        </div>
 
     </body>
 </html>
