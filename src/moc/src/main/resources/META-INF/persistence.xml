@@ -10,8 +10,11 @@
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/moc"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>
+<<<<<<< HEAD
       <property name="javax.persistence.jdbc.password" value="123456"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
+=======
+>>>>>>> c90b633e76023209f6a824f24c5f8658549622f1
       <property name="javax.persistence.jdbc.password" value="ifro2014"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
