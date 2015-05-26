@@ -18,6 +18,15 @@ public class UserModel extends GenericModel<MocUser> {
         super(MocUser.class, EnumConnection.SIGA);
     }
     
-    
+    public EReturn createUser(MocUser user) {
+        
+        user.setStatus(-1);
+        if (!this.merge(user).isError()) {
+            // Todo Enviar email com confirmação de usuário e senha
+            return EReturn.SUCESS;
+        }
+        
+        return EReturn.SUCESS;
+    }
     
 }

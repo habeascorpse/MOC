@@ -6,11 +6,14 @@
 package com.er.moc.eca.model.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,25 +21,26 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author alan
  */
-
 @Entity
 @XmlRootElement
-public class Country implements Serializable {
+public class MocGroup implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @Column(length = 255, unique = true)
+    @Column(nullable = false)
     @NotNull
     private String name;
-
-    public Country() {
-    }
     
+    @Temporal(TemporalType.TIMESTAMP)
+    @NotNull
+    @Column(nullable = false)
+    private Date initDate;
 
-    public Country(String name) {
+    public MocGroup(String name) {
         this.name = name;
+        this.initDate = new Date(System.currentTimeMillis());
     }
 
     public String getName() {
@@ -47,12 +51,19 @@ public class Country implements Serializable {
         this.name = name;
     }
 
+    public Date getInitDate() {
+        return initDate;
+    }
+
+    public void setInitDate(Date initDate) {
+        this.initDate = initDate;
+    }
+
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public MocGroup() {
     }
     
     
@@ -60,7 +71,8 @@ public class Country implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + (this.name != null ? this.name.hashCode() : 0);
+        hash = 83 * hash + (this.name != null ? this.name.hashCode() : 0);
+        hash = 83 * hash + (this.initDate != null ? this.initDate.hashCode() : 0);
         return hash;
     }
 
@@ -72,14 +84,15 @@ public class Country implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Country other = (Country) obj;
+        final MocGroup other = (MocGroup) obj;
         if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
+            return false;
+        }
+        if (this.initDate != other.initDate && (this.initDate == null || !this.initDate.equals(other.initDate))) {
             return false;
         }
         return true;
     }
-    
-    
     
     
     
