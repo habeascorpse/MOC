@@ -60,7 +60,7 @@ public class UserController implements Serializable {
     public Response createUser(MocUser user) {
         System.out.println(user.getCountry());
         if (userModel.createUser(user).isError()) 
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+            return Response.status(Response.Status.CONFLICT).build();
         else
             return Response.status(Response.Status.CREATED).build();
     }

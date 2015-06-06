@@ -9,35 +9,55 @@
 
         <!-- Stylesheets -->
         <link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
-       
+
         <link href="assets/css/style.css" rel="stylesheet" />
         <link href="assets/css/form.css" rel="stylesheet" />
         <link href="assets/css/normalize.css" rel="stylesheet" />
 
         <script src="assets/js/modernizr.js"></script>
+
+        <script src="js/angular/angular.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/userController.js"></script>
     </head>
-    <body>
+    <body ng-app="MocApp">
         <div class="content clearfix wrapper">
             <div class="moc-logo clearfix">
                 <h1>MOC</h1>
                 <h2>Messenger on Cloud </h2>
                 <p>talk to anyone anywhere in the world</p>
                 <p class="eff">Easy, fast and free!</p>
-                
+
             </div>
-            <div class="form-sign-up clearfix">
+            <div class="form-sign-up clearfix" ng-controller="UserController">
                 <h1>Sing up</h1>
                 <h1 class="sign-in">
                     <a href="#">Sign In</a>
                 </h1>
-                <form>
+                <form ng-submit="createUser()" >
                     <label>Your Name</label>
-                    <input type="text" placeholder="type your full name" required="true" />
+                    <input type="text" placeholder="type your full name" required ng-model="user.name" />
+                    <label>Your Login</label>
+                    <input type="text" placeholder="type your login" required ng-model="user.login" />
                     <label>Your E-mail</label>
-                    <input type="email" placeholder="type your e-mail" required="true" />
+                    <input type="email" placeholder="type your e-mail" required ng-model="user.email" />
+                    <label>Your Password</label>
+                    <input type="password"  required ng-model="user.password" />
+
+                    <p ng-init="getCountries()">
+                        <label>Your Country</label>
+                        <select ng-model="selectedCountry" convert-to-number > 
+                            <option ng-repeat="country in countries" value="{{country.id}}">{{country.name}}</option>
+                        </select>
+                    </p>
+
                     <input type="submit" value="Submit" class="btn-submit" />
                 </form>
+                <div>
+                    {{msg}}
+                </div>
             </div>
+
             <footer class="clearfix">
                 <ul>
                     <li><a href="#" title="something">About</a></li>

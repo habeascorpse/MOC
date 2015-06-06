@@ -8,14 +8,9 @@
     <properties>
       <property name="eclipselink.ddl-generation" value="create-tables"/>
       <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/moc"/>
-      <property name="javax.persistence.jdbc.user" value="postgres"/>
-<<<<<<< HEAD
-      <property name="javax.persistence.jdbc.password" value="123456"/>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
-=======
->>>>>>> c90b633e76023209f6a824f24c5f8658549622f1
-      <property name="javax.persistence.jdbc.password" value="ifro2014"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://ec2-204-236-228-77.compute-1.amazonaws.com:5432/ddupvl1221cn4k"/>
+      <property name="javax.persistence.jdbc.user" value="wdawevgnzcccrz"/>
+      <property name="javax.persistence.jdbc.password" value="gqQuOlVZpeeqTDTzI4gZlpQCew"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>

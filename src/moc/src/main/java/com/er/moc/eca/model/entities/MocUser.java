@@ -15,6 +15,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,6 +32,11 @@ import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @XmlRootElement
+@Table
+@NamedQueries( {
+    @NamedQuery(name = "getByLogin",query = "SELECT u FROM MocUser u WHERE u.login = :login"),
+    @NamedQuery(name = "getByLoginAndEmail",query = "SELECT u FROM MocUser u WHERE u.login = :login and u.email = :email")
+})
 public class MocUser implements Serializable {
     
     

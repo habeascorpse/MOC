@@ -29,7 +29,7 @@
                 <p ng-init="getCountries()">
                     Country:
                     <select ng-model="selectedCountry" convert-to-number > 
-                        <option ng-repeat="country in countries" value="{{country}}">{{country.name}}</option>
+                        <option ng-repeat="country in countries" value="{{country.id}}">{{country.name}}</option>
                     </select>
                     {{selectedCountry }}
                 </p>

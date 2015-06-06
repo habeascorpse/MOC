@@ -13,7 +13,8 @@ package com.er.moc.eca.model;
 public enum EReturn {
     
     SUCESS(0,"SUCESSO",false),
-    ERROR(1,"ERRO DESCONHECIDO",true);
+    ERROR(1,"ERRO DESCONHECIDO",true),
+    LOGIN_JA_EXISTE(2,"LOGIN JA EXISTE",true);
     
     
     private final int number;
