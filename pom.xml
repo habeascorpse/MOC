@@ -60,6 +60,11 @@
             <version>1.4.1</version>
         </dependency>
         <dependency>
+            <groupId>com.github.jsimone</groupId>
+            <artifactId>webapp-runner</artifactId>
+            <version>8.0.18.0-M1</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
@@ -97,10 +102,10 @@
                     <execution>
                         <phase>validate</phase>
                         <goals>
-                            <goal>copy</goal>
+                            <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${endorsed.dir}</outputDirectory>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
                             <silent>true</silent>
                             <artifactItems>
                                 <artifactItem>

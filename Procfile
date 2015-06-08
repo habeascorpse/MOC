@@ -1,1 +1,1 @@
-web:    java -cp target/classes:target/dependency/* Main
+web:    java $JAVA_OPTS -jar target/lib/webapp-runner-8.0.18.0-M1.jar --port $PORT target/*.war
