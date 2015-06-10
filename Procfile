@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -jar target/lib/webapp-runner-8.0.18.0-M1.jar --port $PORT target/*.war
+web:    java $JAVA_OPTS -jar Servidor.jar target/*.war
