@@ -17,7 +17,7 @@ import javax.persistence.NoResultException;
 public class UserModel extends GenericModel<MocUser> {
 
     public UserModel() {
-        super(MocUser.class, EnumConnection.SIGA);
+        super(MocUser.class, EnumConnection.MOC);
     }
     
     

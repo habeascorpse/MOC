@@ -15,7 +15,7 @@ import com.er.moc.eca.transaction.EnumConnection;
 public class GroupModel extends GenericModel<MocGroup> {
 
     public GroupModel() {
-        super(MocGroup.class, EnumConnection.SIGA);
+        super(MocGroup.class, EnumConnection.MOC);
     }
     
 }

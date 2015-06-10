@@ -7,7 +7,7 @@ package com.er.moc.eca.transaction;
 
 public enum EnumConnection {
 
-    SIGA("persistence","Conexão com o MOC");
+    MOC("persistence","Conexão com o MOC");
     private String stringConnection;
 
     private String descricao;

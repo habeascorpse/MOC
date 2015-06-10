@@ -15,7 +15,7 @@ import com.er.moc.eca.transaction.EnumConnection;
 public class CountryModel extends GenericModel<Country> {
 
     public CountryModel() {
-        super(Country.class, EnumConnection.SIGA);
+        super(Country.class, EnumConnection.MOC);
     }
     
     
