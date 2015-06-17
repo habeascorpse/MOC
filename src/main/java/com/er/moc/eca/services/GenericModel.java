@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.er.moc.eca.model;
+package com.er.moc.eca.services;
 
 import com.er.moc.eca.transaction.EnumConnection;
 import com.er.moc.eca.transaction.PersistenceFactory;

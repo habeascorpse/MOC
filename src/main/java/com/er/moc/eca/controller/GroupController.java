@@ -5,7 +5,7 @@
  */
 package com.er.moc.eca.controller;
 
-import com.er.moc.eca.model.GroupModel;
+import com.er.moc.eca.services.GroupModel;
 import com.er.moc.eca.model.entities.MocGroup;
 import java.io.Serializable;
 import java.util.List;

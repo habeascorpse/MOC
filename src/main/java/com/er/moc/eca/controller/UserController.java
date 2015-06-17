@@ -5,10 +5,12 @@
  */
 package com.er.moc.eca.controller;
 
-import com.er.moc.eca.model.CountryModel;
-import com.er.moc.eca.model.UserModel;
+import com.er.moc.eca.auth.Voucher;
+import com.er.moc.eca.services.CountryModel;
+import com.er.moc.eca.services.UserModel;
 import com.er.moc.eca.model.entities.Country;
 import com.er.moc.eca.model.entities.MocUser;
+import com.er.moc.eca.services.VoucherService;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
@@ -34,6 +36,8 @@ public class UserController implements Serializable {
     private UserModel userModel;
     @Inject
     private CountryModel countryModel;
+    @Inject
+    private VoucherService voucherService;
     
     
     @Path("/get/all")
@@ -72,6 +76,48 @@ public class UserController implements Serializable {
         
         return countryModel.getAll();
     }
+    
+    @Path("/confirm/{hash}")
+    @GET
+    @Produces(MediaType.TEXT_HTML)
+    public Response confirm(@PathParam("hash") String hash) {
+        
+        
+        if (!userModel.confirmUser(hash).isError()) {
+            
+            
+            String message = "Congratulation, now you has ready to join in our team!"
+                    + "<br> <a href=\"http://localhost:8080/moc/login\">Login</a> ";
+            
+            return Response.ok(message).build();
+        }
+        else
+            return Response.status(Response.Status.CONFLICT).build();
+        
+    }
+    
+    
+    
+    @Path("authenticate")
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response authenticate(MocUser user) {
+        
+        try {
+            Voucher voucher = voucherService.authenticate(user.getLogin(), user.getPassword());
+            
+            return Response.ok(voucher.getKey()).build();
+        }
+        catch (Exception ex) {
+            return Response.status(Response.Status.FORBIDDEN).build();
+        }
+        
+        
+    }
+    
+    
+    
     
     
 }

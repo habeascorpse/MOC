@@ -34,8 +34,10 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @Table
 @NamedQueries( {
-    @NamedQuery(name = "getByLogin",query = "SELECT u FROM MocUser u WHERE u.login = :login"),
-    @NamedQuery(name = "getByLoginAndEmail",query = "SELECT u FROM MocUser u WHERE u.login = :login and u.email = :email")
+    @NamedQuery(name = "User.getByLogin",query = "SELECT u FROM MocUser u WHERE u.login = :login"),
+    @NamedQuery(name = "User.getByEmail",query = "SELECT u FROM MocUser u WHERE u.email = :email"),
+    @NamedQuery(name = "User.authenticate",query = "SELECT u FROM MocUser u WHERE u.login = :login and u.password = :password and u.status = 1"),
+    @NamedQuery(name = "User.getByLoginAndEmail",query = "SELECT u FROM MocUser u WHERE u.login = :login and u.email = :email")
 })
 public class MocUser implements Serializable {
     
@@ -95,7 +97,6 @@ public class MocUser implements Serializable {
         return name;
     }
     
-    @XmlTransient
     public String getPassword() {
         return password;
     }

@@ -50,4 +50,14 @@ app.controller('UserController', function ($scope, $http) {
             $scope.countries = data;
         });
     };
+    
+    $scope.authenticate = function() {
+        
+        
+        $http.post('http://localhost:8080/moc/rs/users/authenticate',$scope.user ).
+        success(function(data, status, headers, config) {
+    // this callback will be called asynchronously
+    // when the response is available
+        });
+    }
 });
