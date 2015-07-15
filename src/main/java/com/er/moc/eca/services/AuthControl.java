@@ -39,7 +39,6 @@ public class AuthControl extends Thread {
                         vouchers.remove(voucher.getKey());
                     }
                     
-                    System.out.println("Voucher: "+voucher);
                 }
             }
             

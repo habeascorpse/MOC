@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Voucher {
 
-    private final int sessionTimeSeconds = 10;
+    private final int sessionTimeMinutes = 60;
 
     private String key;
 
@@ -35,7 +35,7 @@ public class Voucher {
         this.initialAccess = new Date(System.currentTimeMillis());
         this.lastAccess = new Date(System.currentTimeMillis());
 
-        this.key = HashGenerator.generateHash(this.user.getLogin() + this.lastAccess);
+        this.key = HashGenerator.generateHash(this.user.getLogin() + System.currentTimeMillis());
 
     }
 
@@ -62,7 +62,7 @@ public class Voucher {
     public Boolean isSessionActive() {
         GregorianCalendar gc = new GregorianCalendar();
         gc.setTime(lastAccess);
-        gc.add(Calendar.SECOND, this.sessionTimeSeconds);
+        gc.add(Calendar.MINUTE, this.sessionTimeMinutes);
         
         GregorianCalendar gc2 = new GregorianCalendar();
         gc2.setTime(new Date());

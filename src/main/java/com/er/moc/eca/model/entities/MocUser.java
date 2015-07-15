@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -36,6 +37,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries( {
     @NamedQuery(name = "User.getByLogin",query = "SELECT u FROM MocUser u WHERE u.login = :login"),
     @NamedQuery(name = "User.getByEmail",query = "SELECT u FROM MocUser u WHERE u.email = :email"),
+    @NamedQuery(name = "User.search",query = "SELECT u FROM MocUser u WHERE (u.email like :search or u.login like :search)"),
     @NamedQuery(name = "User.authenticate",query = "SELECT u FROM MocUser u WHERE u.login = :login and u.password = :password and u.status = 1"),
     @NamedQuery(name = "User.getByLoginAndEmail",query = "SELECT u FROM MocUser u WHERE u.login = :login and u.email = :email")
 })
@@ -63,6 +65,12 @@ public class MocUser implements Serializable {
     
     @ManyToMany
     private List<MocUser> contacts;
+    
+    @ManyToMany
+    @JoinTable(name="user_group", joinColumns=
+      {@JoinColumn(name="group_id")}, inverseJoinColumns=
+        {@JoinColumn(name="user_id")})
+    private List<MocGroup> groups;
     
     @XmlElement(name = "country")
     @ManyToOne
@@ -149,6 +157,17 @@ public class MocUser implements Serializable {
     public void setCountry(Country country) {
         this.country = country;
     }
+    
+    @XmlTransient
+    public List<MocGroup> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(List<MocGroup> groups) {
+        this.groups = groups;
+    }
+    
+    
 
     @Override
     public int hashCode() {

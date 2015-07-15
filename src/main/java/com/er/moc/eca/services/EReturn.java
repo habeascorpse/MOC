@@ -14,7 +14,8 @@ public enum EReturn {
     
     SUCESS(0,"SUCESSO",false),
     ERROR(1,"ERRO DESCONHECIDO",true),
-    LOGIN_JA_EXISTE(2,"LOGIN JA EXISTE",true);
+    LOGIN_JA_EXISTE(2,"LOGIN JA EXISTE",true),
+    CONTATO_NAO_ENCONTRADO(3,"CONTATO NÃO ENCONTRADO",  true);
     
     
     private final int number;

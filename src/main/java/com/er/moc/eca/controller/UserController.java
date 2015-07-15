@@ -10,8 +10,10 @@ import com.er.moc.eca.services.CountryModel;
 import com.er.moc.eca.services.UserModel;
 import com.er.moc.eca.model.entities.Country;
 import com.er.moc.eca.model.entities.MocUser;
+import com.er.moc.eca.services.AuthControl;
 import com.er.moc.eca.services.VoucherService;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -40,20 +42,49 @@ public class UserController implements Serializable {
     private VoucherService voucherService;
     
     
-    @Path("/get/all")
+    @Path("/find/{search}/{key}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<MocUser> getAllUsers() {
-        List<MocUser> users = userModel.getAll();
-        return users;
+    public Response findUsers(@PathParam("search") String search,@PathParam("key") String key) {
+        
+        if (AuthControl.vouchers.containsKey(key)) {
+            AuthControl.vouchers.get(key).newInteraction();
+            return Response.ok(userModel.search(search).toArray(new MocUser[]{})).build();
+        }
+        else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
     }
     
-    @Path("/get/{id}")
+    
+    @Path("/get/all/{key}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public MocUser getById(@PathParam("id") String id) {
-        Long cod = Long.parseLong(id);
-        return userModel.getByID(cod);
+    public Response getAllUsers(@PathParam("key") String key) {
+        
+        if (AuthControl.vouchers.containsKey(key)) {
+            AuthControl.vouchers.get(key).newInteraction();
+            return Response.ok(userModel.getAll().toArray(new MocUser[]{})).build();
+        }
+        else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+    }
+    
+    @Path("/get/{id}/{key}")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public MocUser getById(@PathParam("id") String id, @PathParam("key") String key) {
+        
+        if (AuthControl.vouchers.containsKey(key)) {
+            AuthControl.vouchers.get(key).newInteraction();
+            Long cod = Long.parseLong(id);
+        
+            return userModel.getByID(cod);
+        }
+        else {
+            return null;
+        }
         
     }
     

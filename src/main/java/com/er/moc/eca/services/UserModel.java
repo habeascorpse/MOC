@@ -10,6 +10,8 @@ import com.er.moc.eca.config.SendMail;
 import com.er.moc.eca.model.entities.ConfirmationUser;
 import com.er.moc.eca.model.entities.MocUser;
 import com.er.moc.eca.transaction.EnumConnection;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.NoResultException;
 
 /**
@@ -31,6 +33,19 @@ public class UserModel extends GenericModel<MocUser> {
                     .getSingleResult();
         } catch (NoResultException e) {
             return null;
+        }
+
+    }
+    
+    public List<MocUser> search(String search) {
+
+        try {
+            return pt
+                    .createNamedQuery("User.search")
+                    .setParameter("search", "%"+search+"%")
+                    .getResultList();
+        } catch (NoResultException e) {
+            return new ArrayList<MocUser>();
         }
 
     }
@@ -105,6 +120,27 @@ public class UserModel extends GenericModel<MocUser> {
         }
         else        
             return EReturn.ERROR;
+    }
+    
+    public EReturn addContact(MocUser user, MocUser contact) {
+        
+        if (user.getContacts() == null)
+            user.setContacts(new ArrayList<MocUser>());
+        
+        user.getContacts().add(contact);
+        
+        return save(user);
+    }
+    
+    public EReturn confirmContact(MocUser user, MocUser contact) {
+        
+        if (user.getContacts().contains(contact)) {
+            return addContact(contact, user);
+        }
+        else {
+            return EReturn.CONTATO_NAO_ENCONTRADO;
+        }
+        
     }
     
 
