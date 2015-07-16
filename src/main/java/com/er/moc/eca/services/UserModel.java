@@ -11,7 +11,9 @@ import com.er.moc.eca.model.entities.ConfirmationUser;
 import com.er.moc.eca.model.entities.MocUser;
 import com.er.moc.eca.transaction.EnumConnection;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.NoResultException;
 
 /**
@@ -135,11 +137,18 @@ public class UserModel extends GenericModel<MocUser> {
     public EReturn confirmContact(MocUser user, MocUser contact) {
         
         if (user.getContacts().contains(contact)) {
-            return addContact(contact, user);
+            if (!addContact(contact, user).isError()) {
+                Set<MocUser> users = new HashSet<MocUser>();
+                users.add(user);
+                users.add(contact);
+                return new GroupModel().newGroupFromContact(users);
+            }
+            
         }
         else {
             return EReturn.CONTATO_NAO_ENCONTRADO;
         }
+        return EReturn.ERROR;
         
     }
     

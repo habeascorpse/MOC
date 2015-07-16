@@ -45,12 +45,16 @@ public class GroupController implements Serializable {
         }
     }
     
-    @Path("{id}")
+    @Path("/get/{id}/{key}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public MocGroup getById(@PathParam("id") String id) {
-        Long cod = Long.parseLong(id);
-        return groupModel.getByID(cod);
+    public Response getById(@PathParam("id") String id, @PathParam("key") String key) {
+        if (AuthControl.vouchers.containsKey(key)) {
+            AuthControl.vouchers.get(key).newInteraction();
+            Long cod = Long.parseLong(id);
+            return Response.ok(groupModel.getByID(cod)).build();
+        }
+        return Response.status(Response.Status.FORBIDDEN).build();
         
     }
     
