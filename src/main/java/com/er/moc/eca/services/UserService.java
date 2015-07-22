@@ -11,7 +11,9 @@ import com.er.moc.eca.model.entities.ConfirmationUser;
 import com.er.moc.eca.model.entities.MocUser;
 import com.er.moc.eca.transaction.EnumConnection;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.NoResultException;
 
 /**
@@ -161,6 +163,7 @@ public class UserService extends GenericService<MocUser> {
         else {
             return EReturn.CONTATO_NAO_ENCONTRADO;
         }
+        return EReturn.ERROR;
         
     }
     

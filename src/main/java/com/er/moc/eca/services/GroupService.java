@@ -7,9 +7,12 @@ package com.er.moc.eca.services;
 
 import com.er.moc.eca.model.entities.MocGroup;
 import com.er.moc.eca.model.entities.MocUser;
+import com.er.moc.eca.model.entities.UserGroup;
 import com.er.moc.eca.transaction.EnumConnection;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -26,8 +29,7 @@ public class GroupService extends GenericService<MocGroup> {
             return pt.createNamedQuery("Group.getAllByUser")
                     .setParameter("user", user)
                     .getResultList();
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return new ArrayList<MocGroup>();
         }
     }

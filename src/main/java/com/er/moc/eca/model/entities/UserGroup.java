@@ -57,6 +57,14 @@ public class UserGroup implements Serializable {
         return status;
     }
 
+    public MocGroup getMocGroup() {
+        return mocGroup;
+    }
+
+    public void setMocGroup(MocGroup mocGroup) {
+        this.mocGroup = mocGroup;
+    }
+
     public void setStatus(String status) {
         this.status = status;
     }

@@ -30,6 +30,7 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.er.moc.eca.config.CORSFilter.class);
+        resources.add(com.er.moc.eca.controller.ContactsController.class);
         resources.add(com.er.moc.eca.controller.GroupController.class);
         resources.add(com.er.moc.eca.controller.MessageController.class);
         resources.add(com.er.moc.eca.controller.UserController.class);
