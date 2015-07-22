@@ -29,7 +29,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @XmlRootElement
 @NamedQueries( {
-    @NamedQuery(name = "Message.getMessagesByUserGroup",query = "SELECT m FROM MocMessage m where m.userGroup = :userGroup ORDER BY m.sendDate DESC")
+    @NamedQuery(name = "Message.getMessagesByUserGroup",query = "SELECT m FROM MocMessage m where m.userGroup = :userGroup ORDER BY m.sendDate ASC"),
+    @NamedQuery(name = "Message.getMessagesByGroup",query = "SELECT m FROM MocMessage m where m.userGroup.mocGroup = :group ORDER BY m.sendDate ASC")
 })
 public class MocMessage implements Serializable {
     
@@ -69,7 +70,7 @@ public class MocMessage implements Serializable {
     public void setText(String text) {
         this.text = text;
     }
-    @XmlTransient
+    
     public UserGroup getUserGroup() {
         return userGroup;
     }

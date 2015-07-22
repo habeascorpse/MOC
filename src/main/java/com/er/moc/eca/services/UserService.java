@@ -163,7 +163,7 @@ public class UserService extends GenericService<MocUser> {
         else {
             return EReturn.CONTATO_NAO_ENCONTRADO;
         }
-        return EReturn.ERROR;
+        
         
     }
     

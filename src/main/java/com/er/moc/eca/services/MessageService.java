@@ -33,8 +33,8 @@ public class MessageService extends GenericService<MocMessage> {
     
     public List<MocMessage> getMessageByGroup(UserGroup userGroup) {
         
-        return pt.createNamedQuery("Message.getMessagesByUserGroup")
-                .setParameter("userGroup", userGroup)
+        return pt.createNamedQuery("Message.getMessagesByGroup")
+                .setParameter("group", userGroup.getMocGroup())
                 .setMaxResults(maxResult)
                 .getResultList();
         

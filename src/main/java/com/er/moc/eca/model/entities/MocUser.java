@@ -111,6 +111,7 @@ public class MocUser implements Serializable {
         this.password = password;
     }
 
+    @XmlTransient
     public List<MocUser> getContacts() {
         return contacts;
     }
@@ -156,6 +157,7 @@ public class MocUser implements Serializable {
         this.country = country;
     }
 
+    @XmlTransient
     public List<UserGroup> getListGroups() {
         return listGroups;
     }

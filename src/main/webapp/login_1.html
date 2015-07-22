@@ -1,0 +1,73 @@
+<div class="wrapper">
+    <main>
+        <h1>MOC.io</h1>
+        <h3>Messenger On Cloud</h3>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, <i>dc é maior que marvel</i>, incididunt ut labore
+            et dolore magna aliqua.<i>O choro é livre</i> , quis nostrud exercitation ullamco <i>Yeah, science bitch</i> ex ea commodo consequat.<i>Batman espanca superman</i>, in reprehenderit in voluptate velit esse cillum
+            dolore eu fugiat nulla pariatur. <i>Whatsapp é passado</i>, cupidatat non proident, sunt in culpa qui officia
+            deserunt mollit anim id est laborum.
+        </p>
+    </main>
+    <aside class="tabs">
+        <ul>
+            <li>
+
+                <input class="radio-tab" type="radio" name="tabs" id="tab1" checked />
+                <label for="tab1" class="label-tab">Sing In</label>
+                <div id="tab-content1" class="tab-content">
+                    <form ng-submit="createUser()" >
+                        <h2>sign up, it's free</h2>
+                        <div>
+                            <label>Name</label>
+                            <input class="input" type="text" autofocus="true"required placeholder="Type your complete name" ng-model="user.name" />
+                        </div>
+                        <div>
+                            <label>E-mail</label>
+                            <input class="input" type="email" required placeholder="Type a valid e-mail" pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$" ng-model="user.email" />
+                        </div>
+                        <div>
+                            <label>Username</label>
+                            <input class="input" type="text" required placeholder="Choose a username" ng-model="user.login" />
+                        </div>
+                        <p>
+                            <label>Password</label>
+                            <input class="input" type="password" required placeholder="Type a password" ng-model="user.password" />
+                        </p>
+
+                        <p  ng-init="getCountries()">
+                            <label>Your Country</label>
+                            <select class="input" ng-model="selectedCountry" convert-to-number > 
+                                <option ng-repeat="country in countries" value="{{country.id}}">{{country.name}}</option>
+                            </select>
+                        </p>
+                        {{msg}}
+
+                        <div>
+                            <input class="button submit" type="submit" name="name" value="Submit">
+                        </div>
+                    </form>
+                </div>
+            </li>
+
+            <li>
+                <input class="radio-tab" type="radio" name="tabs" id="tab2" />
+                <label for="tab2" class="label-tab">Log In</label>
+                <div id="tab-content2" class="tab-content">
+                    <form ng-submit="authenticate()" >
+                        <div>
+                            <label>Username</label>
+                            <input class="input" type="text" required placeholder="Choose a username" ng-model="user.login"  />
+                        </div>
+                        <div>
+                            <label>Password</label>
+                            <input class="input" type="password" required placeholder="Type a password" ng-model="user.password" />
+                        </div>
+                        <div>
+                            <input class="button submit" type="submit" name="name" value="Submit">
+                        </div>
+                    </form>
+            </li>
+        </ul>
+    </aside>
+</div>

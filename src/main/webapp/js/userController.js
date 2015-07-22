@@ -1,5 +1,5 @@
 
-app.controller('UserController', function ($scope, $http) {
+MocApp.controller('UserController', function ($scope, $http, $location) {
 
     $scope.user = {
         name: '',
@@ -37,7 +37,7 @@ app.controller('UserController', function ($scope, $http) {
                     $scope.msg = 'Created, please check your mail!';
                 })
                 .error(function (data, status, headers, config) {
-                    if (status == 409) {
+                    if (status == 409) { 
                         $scope.user.login = '';
                         $scope.msg = "Login already exist, please change it!";
                     }
@@ -56,8 +56,11 @@ app.controller('UserController', function ($scope, $http) {
         
         $http.post('http://localhost:8080/moc/rs/users/authenticate',$scope.user ).
         success(function(data, status, headers, config) {
-    // this callback will be called asynchronously
-    // when the response is available
+            $scope.voucher = data;
+            $location.path('/message').replace();
+        })
+        .error(function() {
+            $scope.voucher = "sem entrada";
         });
-    }
+    };
 });

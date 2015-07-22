@@ -92,6 +92,7 @@ public class MocGroup implements Serializable {
         return group;
     }
 
+    @XmlTransient
     public List<UserGroup> getListUserGroup() {
         return listUserGroup;
     }
