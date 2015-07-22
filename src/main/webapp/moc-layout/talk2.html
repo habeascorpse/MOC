@@ -1,0 +1,144 @@
+<doctype html>
+<html lang="pt-br">
+  <head>
+    <title>MOC</title>
+    <!-- meta tags -->
+    <meta charset="UTF-8" />
+
+    <!-- MDL -->
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-blue.min.css" />
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="assets/css/talk.css" />
+
+
+  </head>
+  <body>
+    <!-- Always shows a header, even in smaller screens. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Messenger On Cloud</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+
+        <!-- search -->
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+          <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+            <i class="material-icons">search</i>
+          </label>
+          <div class="mdl-textfield__expandable-holder">
+            <input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp" />
+          </div>
+        </div>
+
+        <!-- Navigation. We hide it in small screens.
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" href="">Link</a>
+          <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
+        -->
+
+
+        <!-- Right aligned menu below button -->
+        <button id="demo-menu-lower-right"
+                class="mdl-button mdl-js-button mdl-button--icon">
+          <i class="material-icons">more_vert</i>
+        </button>
+
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+            for="demo-menu-lower-right">
+          <li class="mdl-menu__item">Some Action</li>
+          <li class="mdl-menu__item">Another Action</li>
+          <li disabled class="mdl-menu__item">Disabled Action</li>
+          <li class="mdl-menu__item">Yet Another Action</li>
+        </ul>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">MOC</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="">About</a>
+        <a class="mdl-navigation__link" href="">Manual</a>
+        <a class="mdl-navigation__link" href="">Team</a>
+        <a class="mdl-navigation__link" href="">42</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--8-col">
+            <div class="mdl-grid">
+              <div class="mdl-cell mdl-cell--12-col">
+                <div class="talk-screen">
+                  <div class="progress-talk">
+                    <span>Bruce Albuquerque: </span>
+                    <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</label>
+                  </div>
+                  <div class="progress-talk">
+                    <span>Bruce Albuquerque: </span>
+                    <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</label>
+                  </div>
+                </div>
+              </div>
+              <div class="mdl-cell mdl-cell--11-col mdl-cell--3-col-phone mdl-cell--7-col-tablet">
+                <form>
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label large-talk">
+                    <textarea rows=3 class="mdl-textfield__input" id="comment"></textarea>
+                    <label for="comment" class="mdl-textfield__label">Write something</label>
+                  </div>
+                </form>
+              </div>
+              <div class="mdl-cell mdl-cell--1-col">
+                <!-- Colored FAB button with ripple -->
+                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                  <i class="material-icons">send</i>
+                </button>
+              </div>
+
+
+
+          </div>
+        </div>
+
+          <div class="mdl-cell mdl-cell--4-col">
+            <!-- tabs-->
+            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+              <div class="mdl-tabs__tab-bar">
+                  <a href="#starks-panel" class="mdl-tabs__tab is-active">Contatos</a>
+                  <a href="#lannisters-panel" class="mdl-tabs__tab">Grupos</a>
+              </div>
+
+              <div class="mdl-tabs__panel is-active" id="starks-panel">
+                <ul>
+                  <li>Eddard</li>
+                  <li>Catelyn</li>
+                  <li>Robb</li>
+                  <li>Sansa</li>
+                  <li>Brandon</li>
+                  <li>Arya</li>
+                  <li>Rickon</li>
+                </ul>
+              </div>
+              <div class="mdl-tabs__panel" id="lannisters-panel">
+                <ul>
+                  <li>Tywin</li>
+                  <li>Cersei</li>
+                  <li>Jamie</li>
+                  <li>Tyrion</li>
+                </ul>
+              </div>
+              <div class="mdl-tabs__panel" id="targaryens-panel">
+                <ul>
+                  <li>Viserys</li>
+                  <li>Daenerys</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+      </div>
+    </main>
+    </div>
+  </body>
+</html>
