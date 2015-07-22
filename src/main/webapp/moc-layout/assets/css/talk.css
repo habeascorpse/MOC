@@ -1,0 +1,15 @@
+.wrapper{
+  width: 60%;
+  margin: 0 auto;
+  font-family: "Lato";
+}
+
+header{
+  max-height: 42px;
+  background: #FFF none repeat scroll 0% 0%;
+  box-shadow: 0px 10px 9px -6px #CCC;
+}
+header h1{
+  float: left;
+  font-weight: normal;
+}
