@@ -6,8 +6,8 @@
 package com.er.moc.eca.controller;
 
 import com.er.moc.eca.auth.Voucher;
-import com.er.moc.eca.services.CountryModel;
-import com.er.moc.eca.services.UserModel;
+import com.er.moc.eca.services.CountryService;
+import com.er.moc.eca.services.UserService;
 import com.er.moc.eca.model.entities.Country;
 import com.er.moc.eca.model.entities.MocUser;
 import com.er.moc.eca.services.AuthControl;
@@ -33,122 +33,161 @@ import javax.ws.rs.core.Response;
 @Path("/users")
 @RequestScoped
 public class UserController implements Serializable {
-    
+
     @Inject
-    private UserModel userModel;
+    private UserService userModel;
     @Inject
-    private CountryModel countryModel;
+    private CountryService countryModel;
     @Inject
     private VoucherService voucherService;
-    
-    
+
     @Path("/find/{search}/{key}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response findUsers(@PathParam("search") String search,@PathParam("key") String key) {
-        
+    public Response findUsers(@PathParam("search") String search, @PathParam("key") String key) {
+
         if (AuthControl.vouchers.containsKey(key)) {
             AuthControl.vouchers.get(key).newInteraction();
             return Response.ok(userModel.search(search).toArray(new MocUser[]{})).build();
-        }
-        else {
+        } else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-    
-    
+
     @Path("/get/all/{key}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllUsers(@PathParam("key") String key) {
-        
+
         if (AuthControl.vouchers.containsKey(key)) {
             AuthControl.vouchers.get(key).newInteraction();
             return Response.ok(userModel.getAll().toArray(new MocUser[]{})).build();
-        }
-        else {
+        } else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
-    
+
     @Path("/get/{id}/{key}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public MocUser getById(@PathParam("id") String id, @PathParam("key") String key) {
-        
+
         if (AuthControl.vouchers.containsKey(key)) {
             AuthControl.vouchers.get(key).newInteraction();
             Long cod = Long.parseLong(id);
-        
+
             return userModel.getByID(cod);
-        }
-        else {
+        } else {
             return null;
         }
-        
+
     }
-    
-    
+
     @Path("/create")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createUser(MocUser user) {
         System.out.println(user.getCountry());
-        if (userModel.createUser(user).isError()) 
+        if (userModel.createUser(user).isError()) {
             return Response.status(Response.Status.CONFLICT).build();
-        else
+        } else {
             return Response.status(Response.Status.CREATED).build();
+        }
     }
-    
+
     @Path("/countries")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Country> getCountries() {
-        
+
         return countryModel.getAll();
     }
-    
+
     @Path("/confirm/{hash}")
     @GET
     @Produces(MediaType.TEXT_HTML)
     public Response confirm(@PathParam("hash") String hash) {
-        
-        
+
         if (!userModel.confirmUser(hash).isError()) {
-            
-            
+
             String message = "Congratulation, now you has ready to join in our team!"
                     + "<br> <a href=\"http://localhost:8080/moc/login\">Login</a> ";
-            
+
             return Response.ok(message).build();
-        }
-        else
+        } else {
             return Response.status(Response.Status.CONFLICT).build();
-        
+        }
+
     }
-    
-    
-    
+
     @Path("authenticate")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response authenticate(MocUser user) {
-        
+
         try {
             Voucher voucher = voucherService.authenticate(user.getLogin(), user.getPassword());
-            
+
             return Response.ok(voucher.getKey()).build();
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             return Response.status(Response.Status.FORBIDDEN).build();
         }
-        
-        
+
+    }
+
+    @Path("addcontact/{key}")
+    @POST
+    @Consumes(MediaType.TEXT_PLAIN)
+    public Response addContact(String contact, @PathParam("key") String key) {
+        if (AuthControl.vouchers.containsKey(key)) {
+            AuthControl.vouchers.get(key).newInteraction();
+
+            MocUser userContact = userModel.getByLogin(contact);
+            if (userContact != null) {
+                
+                if (userModel.addContact(AuthControl.vouchers.get(key).getUser(), userContact).isError()) 
+                    return Response.serverError().build();
+                else
+                    return Response.accepted().build();
+
+            }
+
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        else {
+
+            return Response.status(Response.Status.FORBIDDEN).build();
+
+        }
+
     }
     
-    
-    
-    
-    
+    @Path("confirmcontact/{key}")
+    @POST
+    @Consumes(MediaType.TEXT_PLAIN)
+    public Response aconfirmContact(String contact, @PathParam("key") String key) {
+        if (AuthControl.vouchers.containsKey(key)) {
+            AuthControl.vouchers.get(key).newInteraction();
+
+            MocUser userContact = userModel.getByLogin(contact);
+            if (userContact != null) {
+                
+                if (userModel.confirmContact(AuthControl.vouchers.get(key).getUser(), userContact).isError()) 
+                    return Response.serverError().build();
+                else
+                    return Response.accepted().build();
+
+            }
+
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        else {
+
+            return Response.status(Response.Status.FORBIDDEN).build();
+
+        }
+
+    }
+
 }

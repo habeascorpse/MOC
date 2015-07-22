@@ -24,7 +24,7 @@ import javax.persistence.NoResultException;
  * 
  */
 
-public abstract class GenericModel<T> {
+public abstract class GenericService<T> {
     /**
      * @author alan 
      * Intancia do PersistenceTransaction
@@ -40,7 +40,7 @@ public abstract class GenericModel<T> {
      * @param type
      * @param connection EnumConnection 
      */
-    protected GenericModel(Class<T> type,EnumConnection connection) {
+    protected GenericService(Class<T> type,EnumConnection connection) {
         this.type = type;
         this.connection = connection;
         pt = PersistenceFactory.getPersistenceTransaction(connection);
@@ -140,19 +140,14 @@ public abstract class GenericModel<T> {
      * @param obj
      * @return Retorna um Enum de Retorno EReturn
      */
-    public EReturn merge(T obj) {
+    public T merge(T obj) {
         
-        try {
             pt.begin();
             pt.merge(obj);
             pt.commit();
-        }
-        catch (Exception e) {
-            return EReturn.ERROR;
-        }
         
         
-        return EReturn.SUCESS;
+        return obj;
     }
     
     

@@ -32,7 +32,7 @@ public class VoucherService {
     private AuthControl auth;
     
     @Inject
-    private UserModel userModel;
+    private UserService userModel;
     
     
     public Voucher authenticate(String login, String password) throws AuthenticationException {

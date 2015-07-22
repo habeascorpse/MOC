@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -21,6 +23,9 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"mocUser", "group"}))
+@NamedQueries( {
+    @NamedQuery(name = "UserGroup.getByUserAndGroup",query = "SELECT ug FROM UserGroup ug WHERE ug.mocGroup = :group and ug.mocUser = :user")
+})
 @XmlRootElement
 public class UserGroup implements Serializable {
     
@@ -56,8 +61,14 @@ public class UserGroup implements Serializable {
         this.status = status;
     }
 
+    public UserGroup(MocGroup group, MocUser user) {
+        this.mocGroup = group;
+        this.mocUser = user;
+    }
+
     public UserGroup() {
     }
+    
 
     @Override
     public int hashCode() {

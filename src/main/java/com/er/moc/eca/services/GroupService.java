@@ -15,9 +15,9 @@ import java.util.List;
  *
  * @author alan
  */
-public class GroupModel extends GenericModel<MocGroup> {
+public class GroupService extends GenericService<MocGroup> {
 
-    public GroupModel() {
+    public GroupService() {
         super(MocGroup.class, EnumConnection.MOC);
     }
 
@@ -30,6 +30,26 @@ public class GroupModel extends GenericModel<MocGroup> {
         catch (Exception e) {
             return new ArrayList<MocGroup>();
         }
+    }
+    
+    public MocGroup newGroupFromContactConfirmation(MocUser user1, MocUser user2) {
+        
+        MocGroup group = MocGroup.newGroupFromContact(user1, user2);
+        
+        
+        if (this.save(group).isError())
+            throw new RuntimeException("Can't persist group on database");
+        
+        return group;
+    }
+    
+    public MocGroup getGroupByName(MocUser user, String groupName) {
+        
+        return (MocGroup) pt.createNamedQuery("Group.getAllByUserAndName")
+                .setParameter("user", user)
+                .setParameter("group", groupName)
+                .getSingleResult();
+        
     }
     
 }

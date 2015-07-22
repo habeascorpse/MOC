@@ -12,9 +12,9 @@ import com.er.moc.eca.transaction.EnumConnection;
  *
  * @author alan
  */
-public class CountryModel extends GenericModel<Country> {
+public class CountryService extends GenericService<Country> {
 
-    public CountryModel() {
+    public CountryService() {
         super(Country.class, EnumConnection.MOC);
     }
     

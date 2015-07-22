@@ -13,7 +13,7 @@ import javax.persistence.NoResultException;
  *
  * @author alan
  */
-public class ConfirmationModel extends GenericModel<ConfirmationUser> {
+public class ConfirmationModel extends GenericService<ConfirmationUser> {
 
     public ConfirmationModel() {
         super(ConfirmationUser.class, EnumConnection.MOC);

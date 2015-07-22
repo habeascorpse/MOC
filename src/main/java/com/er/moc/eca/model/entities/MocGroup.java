@@ -6,8 +6,10 @@
 package com.er.moc.eca.model.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +20,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -31,7 +34,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @XmlRootElement
 @NamedQueries( {
-    @NamedQuery(name = "Group.getAllByUser",query = "SELECT g FROM MocGroup g, MocUser u WHERE g IN (u.groups) and u = :user")
+    @NamedQuery(name = "Group.getAllByUser",query = "SELECT g FROM MocGroup g, UserGroup ug WHERE ug.mocUser = :user AND g IN (ug.mocGroup)"),
+    @NamedQuery(name = "Group.getAllByUserAndName",query = "SELECT g FROM MocGroup g, UserGroup ug WHERE ug.mocUser = :user AND g.name = :group")
 })
 public class MocGroup implements Serializable {
     
@@ -48,11 +52,8 @@ public class MocGroup implements Serializable {
     @Column(nullable = false)
     private Date initDate;
     
-    @ManyToMany
-    @JoinTable(name="user_group", joinColumns=
-      {@JoinColumn(name="user_id")}, inverseJoinColumns=
-        {@JoinColumn(name="group_id")})
-    private List<MocUser> users;
+    @OneToMany(mappedBy = "mocGroup",cascade = CascadeType.PERSIST)
+    private List<UserGroup> listUserGroup;
 
     public MocGroup(String name) {
         this.name = name;
@@ -71,10 +72,6 @@ public class MocGroup implements Serializable {
         return initDate;
     }
 
-    public void setInitDate(Date initDate) {
-        this.initDate = initDate;
-    }
-
     public Long getId() {
         return id;
     }
@@ -82,13 +79,27 @@ public class MocGroup implements Serializable {
     public MocGroup() {
     }
 
-    public List<MocUser> getUsers() {
-        return users;
+    public static MocGroup newGroupFromContact(MocUser user1, MocUser user2) {
+        
+        MocGroup group = new MocGroup(user1.getLogin() + user2.getLogin());
+        
+        List<UserGroup> userGroupList = new ArrayList<UserGroup>();
+        userGroupList.add(new UserGroup(group, user1));
+        userGroupList.add(new UserGroup(group,user2));
+        
+        group.setListUserGroup(userGroupList);
+        
+        return group;
     }
 
-    public void setUsers(List<MocUser> users) {
-        this.users = users;
+    public List<UserGroup> getListUserGroup() {
+        return listUserGroup;
     }
+
+    private void setListUserGroup(List<UserGroup> listUserGroup) {
+        this.listUserGroup = listUserGroup;
+    }
+    
     
 
     @Override

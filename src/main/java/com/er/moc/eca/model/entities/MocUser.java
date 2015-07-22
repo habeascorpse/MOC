@@ -18,6 +18,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlElement;
@@ -37,7 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries( {
     @NamedQuery(name = "User.getByLogin",query = "SELECT u FROM MocUser u WHERE u.login = :login"),
     @NamedQuery(name = "User.getByEmail",query = "SELECT u FROM MocUser u WHERE u.email = :email"),
-    @NamedQuery(name = "User.search",query = "SELECT u FROM MocUser u WHERE (u.email like :search or u.login like :search)"),
+    @NamedQuery(name = "User.search",query = "SELECT u FROM MocUser u WHERE (u.email like :search or u.login like :search) and u.status = 1"),
     @NamedQuery(name = "User.authenticate",query = "SELECT u FROM MocUser u WHERE u.login = :login and u.password = :password and u.status = 1"),
     @NamedQuery(name = "User.getByLoginAndEmail",query = "SELECT u FROM MocUser u WHERE u.login = :login and u.email = :email")
 })
@@ -66,11 +67,8 @@ public class MocUser implements Serializable {
     @ManyToMany
     private List<MocUser> contacts;
     
-    @ManyToMany
-    @JoinTable(name="user_group", joinColumns=
-      {@JoinColumn(name="group_id")}, inverseJoinColumns=
-        {@JoinColumn(name="user_id")})
-    private List<MocGroup> groups;
+    @OneToMany(mappedBy = "mocUser")
+    private List<UserGroup> listGroups;
     
     @XmlElement(name = "country")
     @ManyToOne
@@ -157,15 +155,15 @@ public class MocUser implements Serializable {
     public void setCountry(Country country) {
         this.country = country;
     }
-    
-    @XmlTransient
-    public List<MocGroup> getGroups() {
-        return groups;
+
+    public List<UserGroup> getListGroups() {
+        return listGroups;
     }
 
-    public void setGroups(List<MocGroup> groups) {
-        this.groups = groups;
+    public void setListGroups(List<UserGroup> listGroups) {
+        this.listGroups = listGroups;
     }
+    
     
     
 

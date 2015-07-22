@@ -5,7 +5,7 @@
  */
 package com.er.moc.eca.controller;
 
-import com.er.moc.eca.services.GroupModel;
+import com.er.moc.eca.services.GroupService;
 import com.er.moc.eca.model.entities.MocGroup;
 import com.er.moc.eca.services.AuthControl;
 import java.io.Serializable;
@@ -29,7 +29,7 @@ import javax.ws.rs.core.Response;
 public class GroupController implements Serializable {
     
     @Inject
-    private GroupModel groupModel;
+    private GroupService groupModel;
     
     @Path("/all/{key}")
     @GET

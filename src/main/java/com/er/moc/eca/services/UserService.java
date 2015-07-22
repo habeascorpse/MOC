@@ -18,9 +18,9 @@ import javax.persistence.NoResultException;
  *
  * @author alan
  */
-public class UserModel extends GenericModel<MocUser> {
+public class UserService extends GenericService<MocUser> {
 
-    public UserModel() {
+    public UserService() {
         super(MocUser.class, EnumConnection.MOC);
     }
 
@@ -83,7 +83,7 @@ public class UserModel extends GenericModel<MocUser> {
         
         // Todo Enviar email com confirmação de usuário e senha Moc23P)(44 mocsysbr
         String msgMail = "Hello "+ confirm.getMocUser().getName() +", Thank You for choosen MOC, a PQP member<br />"
-                + "please click <a href=\"http://localhost/rs/users/confirm/" + confirm.getConfirmationHash() + "\"> here </a> to confirm your account!";
+                + "please click <a href=\"http://localhost:8080/moc/rs/users/confirm/" + confirm.getConfirmationHash() + "\"> here </a> to confirm your account!";
         SendMail mail = new SendMail("MocSysBR", confirm.getMocUser().getEmail(), "MOC - Account Confirmation", msgMail);
         mail.start();
         
@@ -122,20 +122,41 @@ public class UserModel extends GenericModel<MocUser> {
             return EReturn.ERROR;
     }
     
+    private Boolean hasContact(MocUser user, MocUser contact) {
+        if (user.getId().equals(contact.getId()))
+            return Boolean.TRUE;
+        
+        for (MocUser mu :user.getContacts())
+            if (mu.getId().equals(contact.getId()))
+                return Boolean.TRUE;
+        
+        return Boolean.FALSE;
+    }
+    
     public EReturn addContact(MocUser user, MocUser contact) {
+        
+        if (hasContact(user, contact))
+            return EReturn.ERROR;
         
         if (user.getContacts() == null)
             user.setContacts(new ArrayList<MocUser>());
         
         user.getContacts().add(contact);
         
-        return save(user);
+        user  = merge(user);
+        return EReturn.SUCESS;
     }
     
     public EReturn confirmContact(MocUser user, MocUser contact) {
         
-        if (user.getContacts().contains(contact)) {
-            return addContact(contact, user);
+        if (!hasContact(user, contact)) {
+            if (user.getContacts() == null)
+                user.setContacts(new ArrayList<MocUser>());
+            user.getContacts().add(contact);
+            user = merge(user);
+            new GroupService().newGroupFromContactConfirmation(user, contact);
+            return EReturn.SUCESS;
+            
         }
         else {
             return EReturn.CONTATO_NAO_ENCONTRADO;
