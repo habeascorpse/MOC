@@ -1,0 +1,51 @@
+MPROF/Sistemas de Informação
+
+Ata de Reunião - nº 01
+Projeto Rádio Peão / Messenger on the Cloud - MOC
+
+Identificação da Reunião
+Data: 21/05/2015 - das 19:35 às 23:45
+Local: Flats Recife - Recife/PE
+
+Objetivos da Reunião
+Iniciar discussão sobre o projeto de desenvolvimento do Software proposto Rádio Peão
+
+Participantes
+Alan de Oliveira Silva - IFRO / Reitoria
+Bruce Fábian Reis Albuquerque - IFRO / Reitoria
+Erlan Fonseca de Souza - IFRO / Campus Ariquemes
+Marcos Adriel Sampaio Rost - IFRO / Campus Vilhena
+
+Pauta
+Brainstorm Inicial sobre a proposta de desenvolvimento do sistema.
+Discussão inicial para levantamento de requisitos do sistema.
+Discussão inicial sobre possíveis metodologias e ferramentas de desenvolvimento.
+Criação do cronograma de atividades.
+
+Discussão da Pauta
+Aos vinte e um dias do mês de maio, às dezenove horas e trinta e cinco minutos, durante o jantar, iniciou-se a discussão sobre o projeto de desenvolvimento do sistema, a partir da temática escolhida pelos participantes do grupo de trabalho.
+Com o tema “Rádio Peão” (Sistema de comunicação privado para grupos ou empresas) iniciou-se com um Brainstorm sobre o quê desenvolver, como desenvolver e para quem desenvolver. Foi conversado sobre os meios de comunicação existentes em nosso dia-a-dia e suas diferentes formas de uso nos diversos ambientes de trabalho. 
+A partir de uma análise informal, pelos integrantes do time, sobre as principais ferramentas de troca de mensagens existentes (WhatsApp, Skype, Viber, Telegram, etc.) e quais suas principais  funcionalidades, identificou-se um fator importante na concepção destas ferramentas que possuem como foco principal o entretenimento de seus usuários. Desta forma, mesmo cada vez mais presentes no mundo dos negócios, seu objetivo específico ainda é entretenimento. Partindo desta análise, a equipe idenfificou uma oportunidade: A possibilidade de projetar um sistema de comunicação similar aos existentes, porém com uma “cara” mais empresarial, de forma que seus usuários não desviem o foco de suas comunicações, afetando a produtividade.
+Foram abordadas as experiências pessoais de cada um e foi lembrado por todos sobre um dos sistemas de trocas de mensagens instantâneas mais conhecidos mundialmente, hoje extinto, o Msn Messenger. Ao relembrar dos recursos do sistema, lembrou-se de uma das características do extinto sistema que era o recurso de chamar atenção onde um dos integrantes da conversa podia solicitar que tela do outro participante se agitasse e emitisse sons de alerta para chamar sua atenção a um assunto urgente. Desta forma, discutiu-se a possibilidade de incrementar a ferramenta com este recurso.
+Discutiu-se sobre a metodologia a ser adotada no processo de desenvolvimento de software levando em consideração as características do sistema e familiaridades da equipe. 
+Foi iniciado um brainstorm sobre o nome da ferramenta e dentre os vários citados, definiu-se que o sistema seria “batizado” de MOC - acrônimo de Messenger on the Cloud.
+Para formalizar as ações e iniciar o projeto do sistema, o integrante Alan de Oliveira criou um repositório no GitHub para o projeto MOC, e incluiu os demais integrantes do time como colaboradores, na plataforma.
+Encerrando a reunião, às vinte e três horas e quarenta minutos do mesmo dia, definiu-se a data da próxima reunião, via hangout, a realizar-se no dia 29/05/2015.
+
+Decisões
+Definição do nome do Sistema.
+Definição preliminar das funcionalidades do sistema.
+Definição preliminar dos requisitos do sistema.
+Definição preliminar de configuração de ambiente de desenvolvimento.
+Definição de prazo para amadurecimento de idéias a serem discutidas na próxima reunião.
+
+Próxima reunião
+A próxima reunião será via hangout, com todos os integrantes, no dia 29/05/2015.
+
+Pauta da próxima Reunião
+Revisão da discussão anterior com alinhamento de idéias.
+Definição dos papéis dos integrantes da equipe.
+Definição da metodologia a ser adotada.
+Inicio de elaboração do projeto.
+Realização de esboços preliminares das Interfaces do sistema.
+

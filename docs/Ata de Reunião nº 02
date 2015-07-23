@@ -1,0 +1,51 @@
+MPROF/Sistemas de Informação
+
+Ata de reunião nº02
+Projeto Rádio Peão - MOC
+
+Identificação da Reunião
+Data: 29/05/2015 - das 14:07 às 16:12
+Local: Webconferência
+
+Objetivos da Reunião
+Definir atribuições dos integrantes, levantar demandas individuais e aprovar as propostas.
+
+Participantes
+Alan de Oliveira Silva - IFRO / Reitoria
+Bruce Fábian Reis Albuquerque - IFRO / Reitoria
+Erlan Fonseca de Souza - IFRO / Campus Ariquemes
+Marcos Adriel Sampaio Rost - IFRO / Campus Vilhena
+
+Pauta
+Revisão da discussão anterior com alinhamento de idéias.
+Aprovação por votação do nome do sistema, requisitos funcionais e não funcionais, metodologia e arquitetura do sistema.
+Definição dos papéis dos integrantes da equipe.
+Definição e aprovação do cronograma de atividades.
+
+Discussão da Pauta
+Aos vinte e nove dias do mês de maio foi dado início a segunda reunião do projeto de desenvolvimento do sistema MOC.
+Seguindo a pauta definida na primeira reunião, cada integrante da equipe apresentou sugestões para inclusão, exclusão ou alteração sobre os requisitos da aplicação, metodologia e arquitetura a ser utilizada. Neste momento, foi lida a ata da reunião anterior e realizada a aprovação dos requisitos funcionais. No decorrer da discussão, cada integrante apresentou suas afinidades em relação as atividades inerentes à execução do projeto, divididas em:
+Elaboração do projeto do banco de dados e projeto da aplicação: Todos os Integrantes.
+Gerência de Projeto, Engenharia de Requisitos, e documentação do projeto: Erlan Fonseca e Marcos Adriel.
+Preparação de arquitetura do ambiente de desenvolvimento e implementação: Alan de Oliveira e Bruce Albuquerque.
+Projeto e Design de interface: Bruce Albuquerque e Alan de Oliveira.
+Implantação de projeto, elaboração de manuais: Toda a equipe
+Mediante atribuições definidas, foi discutido e definido o cronograma de atividades dos integrantes.
+Foi criado um ambiente de comunicação colaborativo para compartilhamento dos documentos gerados, consultas e edição em real-time, à todos os integrantes da equipe usando a ferramenta Google Drive.
+Foi realizado um esboço do esquema ER do banco de dados do sistema baseado nos requisitos levantados em documentação informal.
+
+Decisões
+Requisitos, arquitetura e metodologia aprovados.
+Papéis dos integrantes da Equipe definidos.
+Cronograma elaborado e aprovado.
+Definição de demandas aos integrantes de projeto e desenvolvimento.
+Definição de data para a próxima reunião e apresentação das demandas definidas.
+
+Próxima reunião
+A próxima reunião será via hangout, com todos os integrantes, no dia 10/06/2015.
+
+Pauta da próxima Reunião
+Revisão da discussão anterior com alinhamento de idéias.
+Apresentação do esquema do banco de dados pela equipe de desenvolvimento .
+Apresentação do andamento da documentação dos requisitos e casos de uso do sistema.
+Apresentação do andamento da preparação do ambiente de desenvolvimento.

@@ -1,0 +1,42 @@
+MPROF/Sistemas de Informação
+
+Ata de reunião nº 03
+ Projeto Rádio Peão / Messenger on the Cloud - MOC
+
+Identificação da Reunião
+Data: 10/06/2015 - das 19:07 às 21:45
+Local: Webconferência
+
+Objetivos da Reunião
+Apresentar o andamento do projeto e apresentação do protótipo do design da interface.
+Revisar os artefatos construídos por todos integrantes e definição de novas demandas.
+
+Participantes
+Alan de Oliveira Silva - IFRO / Reitoria
+Bruce Fábian Reis Albuquerque - IFRO / Reitoria
+Erlan Fonseca de Souza - IFRO / Campus Ariquemes
+Marcos Adriel Sampaio Rost - IFRO / Campus Vilhena
+
+Pauta
+Revisão da reunião anterior, revisão de discussões informais durante o intervalo entre reuniões e alinhamento de idéias do time.
+Apresentação do esquema do banco de dados pela equipe de desenvolvimento.
+Apresentação do andamento da documentação dos requisitos e casos de uso do sistema.
+Apresentação do andamento da preparação do ambiente de desenvolvimento.
+
+Discussão da Pauta
+Aos dez dias do mês de junho, as 19:07h, foi dado início a terceira reunião do projeto de desenvolvimento do sistema MOC.
+A equipe de gerencia de projetos e engenharia de requisitos apresentou o documento de requisitos e os casos de uso destacados. Os requisitos foram aprovados por todos os integrantes.
+A equipe de design e desenvolvimento apresentou para revisão, a preparação da arquitetura do ambiente de desenvolvimento juntamente com um protótipo inicial do front-end. Foram sugeridos algumas alterações em relação ao posicionamento de formulários, cores e fontes.
+Ficou definido para o próximo encontro presencial, uma apresentação formal dos protótipos das telas, de acordo com os requisitos aprovados.
+
+Decisões
+Documento de requisitos e casos de uso aprovados.
+Protótipo parcial do front-end aprovado com resalvas.
+
+Próxima reunião
+A próxima reunião será presencial, no próximo encontro do mestrado a realizar-se no dia no dia 15/06/2015, com todos os integrantes.
+
+Pauta da próxima Reunião
+Apresentação do front-end do restante das telas do sistema para apreciação e aprovação por toda a equipe.
+Apresentação de versão parcial da implementação do sistema para apreciação e aprovação por toda a equipe.
+Apresentação do andamento da construção do projeto e documentação.
