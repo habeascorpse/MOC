@@ -83,6 +83,11 @@ public class MocMessage implements Serializable {
         return sendDate;
     }
 
+    public void setSendDate(Date sendDate) {
+        this.sendDate = sendDate;
+    }
+    
+
     @Override
     public int hashCode() {
         int hash = 7;

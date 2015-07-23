@@ -9,17 +9,22 @@ var MocApp = angular.module('MocApp', ['ngRoute']);
 MocApp.config(function($routeProvider,$locationProvider)
 {
    // remove o # da url
-   $locationProvider.html5Mode(true);
+   //$locationProvider.html5Mode(true);
  
    $routeProvider
  
    // para a rota '/', carregaremos o template home.html e o controller 'HomeCtrl'
    .when('/', {
-      templateUrl : 'login_1.html',
+      templateUrl : 'login.html',
       controller : 'UserController'
-   })
+   }) 
    
    .when('/message', {
+       templateUrl : 'talk.html',
+       controller : 'MessageController'
+   })
+   
+   .when('/home', {
        templateUrl : 'home.html',
        controller : 'UserController'
    })
@@ -28,3 +33,15 @@ MocApp.config(function($routeProvider,$locationProvider)
    // caso não seja nenhum desses, redirecione para a rota '/'
    .otherwise ({ redirectTo: '/' });
 });
+
+MocApp.factory('State', function(){
+
+  return {
+    formData:{
+        voucher : "",
+        url : "http://192.168.0.19:8080/moc/rs/"        
+    
+        },
+  };
+});
+

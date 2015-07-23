@@ -1,0 +1,104 @@
+
+<!-- Always shows a header, even in smaller screens. -->
+<div ng-init="main()"  class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Messenger On Cloud</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+
+            <!-- search -->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+                <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+                    <i class="material-icons">search</i>
+                </label>
+                <div class="mdl-textfield__expandable-holder">
+                    <input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp" />
+                </div>
+            </div>
+
+            <!-- Navigation. We hide it in small screens.
+            <nav class="mdl-navigation mdl-layout--large-screen-only">
+              <a class="mdl-navigation__link" href="">Link</a>
+              <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+            -->
+
+
+            <!-- Right aligned menu below button -->
+            <button id="demo-menu-lower-right"
+                    class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons">more_vert</i>
+            </button>
+
+            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                for="demo-menu-lower-right">
+                <li class="mdl-menu__item">Some Action</li>
+                <li class="mdl-menu__item">Another Action</li>
+                <li disabled class="mdl-menu__item">Disabled Action</li>
+                <li class="mdl-menu__item">Yet Another Action</li>
+            </ul>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">MOC</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">About</a>
+            <a class="mdl-navigation__link" href="">Manual</a>
+            <a class="mdl-navigation__link" href="">Team</a>
+            <a class="mdl-navigation__link" href="">42</a>
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--8-col">
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--12-col">
+                        <div class="talk-screen"  >
+                            <div class="progress-talk" ng-repeat="message in messages" >
+                                <span>{{message.userGroup.mocUser.login}} - at {{message.sendDate}} </span> says:
+                                <p>
+                                    <label>{{message.text}}</label>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <form ng-submit="sendMessage(selectedGroup)">
+                        <div class="mdl-cell mdl-cell--11-col mdl-cell--3-col-phone mdl-cell--7-col-tablet">
+                            
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label large-talk">
+                                    <textarea rows=3 class="mdl-textfield__input" id="comment" ng-model="textMessage.text" ></textarea>
+                                    <label for="comment" class="mdl-textfield__label">Write something</label>
+                                </div>
+                            
+                        </div>
+                        <div class="mdl-cell mdl-cell--1-col">
+                            <!-- Colored FAB button with ripple -->
+                            <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" type="submit">
+                                <i class="material-icons">send</i>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+            <div ng-init="getGroups()" class="mdl-cell mdl-cell--4-col">
+                <!-- tabs-->
+                <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+                    <div class="mdl-tabs__tab-bar">
+                        <a class="mdl-tabs__tab">Grupos</a>
+                    </div>
+
+                    <div class="mdl-tabs__panel is-active" id="group-panel">
+                        <ul ng-repeat="group in groups" >
+                            <li ng-click="getMessagesFromGroup(group)">{{group.name}}</li>
+                        </ul>
+                        {{msg}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

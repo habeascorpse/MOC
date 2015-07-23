@@ -1,5 +1,6 @@
 
-MocApp.controller('UserController', function ($scope, $http, $location) {
+MocApp.controller('UserController', function ($scope, $http, $location, State) {
+    $scope.voucher = State.formData['voucher'];
 
     $scope.user = {
         name: '',
@@ -16,7 +17,7 @@ MocApp.controller('UserController', function ($scope, $http, $location) {
         $scope.user.country["id"] = $scope.selectedCountry;
         var req = {
             method: 'POST',
-            url: 'http://localhost:8080/moc/rs/users/create',
+            url: State.formData['url'] + 'users/create',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -46,7 +47,7 @@ MocApp.controller('UserController', function ($scope, $http, $location) {
     };
 
     $scope.getCountries = function () {
-        $http.get('http://localhost:8080/moc/rs/users/countries').success(function (data) {
+        $http.get(State.formData['url'] +'users/countries').success(function (data) {
             $scope.countries = data;
         });
     };
@@ -54,9 +55,10 @@ MocApp.controller('UserController', function ($scope, $http, $location) {
     $scope.authenticate = function() {
         
         
-        $http.post('http://localhost:8080/moc/rs/users/authenticate',$scope.user ).
+        $http.post(State.formData['url'] + 'users/authenticate',$scope.user ).
         success(function(data, status, headers, config) {
             $scope.voucher = data;
+            State.formData['voucher'] = data;
             $location.path('/message').replace();
         })
         .error(function() {
