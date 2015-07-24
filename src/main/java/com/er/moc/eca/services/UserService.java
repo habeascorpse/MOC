@@ -92,7 +92,7 @@ public class UserService extends GenericService<MocUser> {
         // Todo Enviar email com confirmação de usuário e senha Moc23P)(44 mocsysbr
         String msgMail = "Hello "+ confirm.getMocUser().getName() +", Thank You for choosen MOC, a PQP member<br />"
                 + "please click <a href=\"http://cloudmessenger.com.br/moc/rs/users/confirm/" + confirm.getConfirmationHash() + "\"> here </a> to confirm your account!";
-        SendMail mail = new SendMail("MocSysBR", confirm.getMocUser().getEmail(), "MOC - Account Confirmation", msgMail);
+        SendMail mail = new SendMail("CloudMessenger", confirm.getMocUser().getEmail(), "MOC - Account Confirmation", msgMail);
         mail.start();
         
     }

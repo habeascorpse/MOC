@@ -40,6 +40,7 @@ MocApp.factory('State', function ($cookies) {
         formData: {
             voucher: '',
             url: 'http://cloudmessenger.com.br/moc/rs/'
+            //url: 'http://localhost:8080/moc/rs/'
 
         },
     };

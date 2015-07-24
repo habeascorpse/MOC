@@ -35,13 +35,15 @@ MocApp.controller('UserController', function ($scope, $http, $location, State, $
                             id: 0
                         }
                     };
-                    $scope.msg = 'Created, please check your mail!';
+                    $scope.msg = 'Created, please check your mail to confirm your account!';
                 })
                 .error(function (data, status, headers, config) {
                     if (status == 409) { 
                         $scope.user.login = '';
+                        $scope.user.email = '';
                         $scope.msg = "Login already exist, please change it!";
                     }
+                    $scope.msg = "Login already exist, please change it!";
                 });
 
     };
