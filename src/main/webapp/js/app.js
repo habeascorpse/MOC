@@ -36,7 +36,6 @@ MocApp.config(function ($routeProvider, $locationProvider)
     //.otherwise ({ redirectTo: '/' });
 });
 MocApp.factory('State', function ($cookies) {
-    $cookies.put('voucher', '');
     return {
         formData: {
             voucher: '',

@@ -35,6 +35,7 @@ MocApp.controller('MessageController', function ($scope, $http, $location, State
             $http.get(State.formData['url'] + 'message/get/' + group.name + '/' + $cookies.get('voucher')).
                     success(function (data, status, headers, config) {
                         $scope.messages = data;
+                        
 
                     })
                     .error(function () {
@@ -116,6 +117,12 @@ MocApp.controller('MessageController', function ($scope, $http, $location, State
     $scope.cleanMessage = function () {
         $scope.msg = null;
     };
+    
+    $scope.logoff = function() {
+        $cookies.put('voucher','');
+        $location.path('login').replace();  
+    };
+    
 
 
 });

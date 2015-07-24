@@ -53,4 +53,21 @@ public class GroupService extends GenericService<MocGroup> {
         
     }
     
+    public MocGroup createGroup(MocUser user, String name) {
+        MocGroup group = new MocGroup();
+        group.setName(name);
+        group.getListUserGroup().add(new UserGroup(group, user));
+        
+        this.save(group);
+        return group;
+    }
+    
+    public EReturn addUserToGroup(MocUser user, MocGroup group) {
+        group.getListUserGroup().add(new UserGroup(group, user));
+        
+        this.merge(group);
+        return EReturn.SUCESS;
+    }
+    
+    
 }

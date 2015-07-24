@@ -77,6 +77,8 @@ public class MocGroup implements Serializable {
     }
 
     public MocGroup() {
+        listUserGroup = new ArrayList<UserGroup>();
+        initDate = new Date(System.currentTimeMillis());
     }
 
     public static MocGroup newGroupFromContact(MocUser user1, MocUser user2) {

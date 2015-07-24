@@ -99,7 +99,7 @@ public class UserController implements Serializable {
         if (!userModel.confirmUser(hash).isError()) {
 
             String message = "Congratulation, now you has ready to join in our team!"
-                    + "<br> <a href=\"http://localhost:8080/moc/login\">Login</a> ";
+                    + "<br> <a href=\"http://cloudmessenger.com.br/moc\">Login</a> ";
 
             return Response.ok(message).build();
         } else {
