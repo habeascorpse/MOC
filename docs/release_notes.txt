@@ -1,5 +1,7 @@
 Release notes
 
+http://cloudmessenger.com.br/moc
+
 MOC para usuários
 
 O Messenger on the Cloud é uma ferramenta que permite ao usuário comunicar-se e consolidar sua rede de relacionamentos. Ele oferece:

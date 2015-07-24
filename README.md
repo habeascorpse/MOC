@@ -77,7 +77,7 @@ Projetar um sistema de comunicação por meio de troca de mensagens que possa se
 
 Bem vindo ao Messenger on the Cloud, ou simplesmente ao MOC! O MOC é um serviço de mensagens multiplataforma para celulares, tablets, notebooks ou desktops, que usa a conexão de internet de seu equipamento para conversar com outros usuários do MOC.
 
-Para utilizar o MOC, acesse este link (http://200.241.78.58/moc) do navegador web de seu dispositivo. Primeiro, crie uma conta pessoal:
+Para utilizar o MOC, acesse este link (http://cloudmessenger.com.br/moc) do navegador web de seu dispositivo. Primeiro, crie uma conta pessoal:
 
 1. Clique na aba “Sign In” e digite os seus dados: nome, e-mail, usuário, senha, gênero e o país no qual você reside.
 2. Envie os dados, clicando no botão “submit”, para que sua conta pessoal seja criada. Observe as mensagens de notificação que serão exibidas pelo sistema após a validação dos dados informados. Verifique os dados que possam estar inválidos.
