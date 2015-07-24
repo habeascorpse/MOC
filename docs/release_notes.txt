@@ -1,7 +1,6 @@
 Release notes
 
-Endereço Web: 
-http://cloudmessenger.com.br
+http://cloudmessenger.com.br/moc
 
 MOC para usuários
 
