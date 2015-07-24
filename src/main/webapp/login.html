@@ -1,73 +1,52 @@
-<div class="wrapper">
-    <main>
-        <h1>MOC.io</h1>
-        <h3>Messenger On Cloud</h3>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, <i>dc é maior que marvel</i>, incididunt ut labore
-            et dolore magna aliqua.<i>O choro é livre</i> , quis nostrud exercitation ullamco <i>Yeah, science bitch</i> ex ea commodo consequat.<i>Batman espanca superman</i>, in reprehenderit in voluptate velit esse cillum
-            dolore eu fugiat nulla pariatur. <i>Whatsapp é passado</i>, cupidatat non proident, sunt in culpa qui officia
-            deserunt mollit anim id est laborum.
-        </p>
+<div class="moc-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+    <header class="moc-header mdl-layout__header mdl-layout__header--scroll mdl-color--red">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">MOC</span>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" href="#/">SIGN UP</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">MOC</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="#/">SIGN UP</a>
+      </nav>
+    </div>
+
+    <div class="moc-ribbon"></div>
+    <main class="moc-main mdl-layout__content">
+        <div class="moc-container mdl-grid">
+            <div class="mdl-cell mdl-cell--3-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+            <div class="moc-content mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800">
+                <h3>Login</h3>
+                <form ng-submit="authenticate()">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="text" id="username" ng-model="user.login" />
+                        <label class="mdl-textfield__label" for="username">Username</label>
+                    </div>
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" type="password" id="passwd" ng-model="user.password" />
+                        <label class="mdl-textfield__label" for="passwd">password</label>
+                    </div>
+                    <div>
+                        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit" >
+                            submit
+                        </button>
+                    </div>
+                    {{msg}}
+
+                </form>
+            </div>
+        </div>
+        <footer class="moc-footer mdl-mini-footer">
+            <div class="mdl-mini-footer--left-section">
+                Copyright (c) 2015 Copyright Holder All Rights Reserved.
+            </div>
+        </footer>
     </main>
-    <aside class="tabs">
-        <ul>
-            <li>
-
-                <input class="radio-tab" type="radio" name="tabs" id="tab1" checked />
-                <label for="tab1" class="label-tab">Sing In</label>
-                <div id="tab-content1" class="tab-content">
-                    <form ng-submit="createUser()" >
-                        <h2>sign up, it's free</h2>
-                        <div>
-                            <label>Name</label>
-                            <input class="input" type="text" autofocus="true"required placeholder="Type your complete name" ng-model="user.name" />
-                        </div>
-                        <div>
-                            <label>E-mail</label>
-                            <input class="input" type="email" required placeholder="Type a valid e-mail" pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$" ng-model="user.email" />
-                        </div>
-                        <div>
-                            <label>Username</label>
-                            <input class="input" type="text" required placeholder="Choose a username" ng-model="user.login" />
-                        </div>
-                        <p>
-                            <label>Password</label>
-                            <input class="input" type="password" required placeholder="Type a password" ng-model="user.password" />
-                        </p>
-
-                        <p  ng-init="getCountries()">
-                            <label>Your Country</label>
-                            <select class="input" ng-model="selectedCountry" convert-to-number > 
-                                <option ng-repeat="country in countries" value="{{country.id}}">{{country.name}}</option>
-                            </select>
-                        </p>
-                        {{msg}}
-
-                        <div>
-                            <input class="button submit" type="submit" name="name" value="Submit">
-                        </div>
-                    </form>
-                </div>
-            </li>
-
-            <li>
-                <input class="radio-tab" type="radio" name="tabs" id="tab2" />
-                <label for="tab2" class="label-tab">Log In</label>
-                <div id="tab-content2" class="tab-content">
-                    <form ng-submit="authenticate()" >
-                        <div>
-                            <label>Username</label>
-                            <input class="input" type="text" required placeholder="Choose a username" ng-model="user.login"  />
-                        </div>
-                        <div>
-                            <label>Password</label>
-                            <input class="input" type="password" required placeholder="Type a password" ng-model="user.password" />
-                        </div>
-                        <div>
-                            <input class="button submit" type="submit" name="name" value="Submit">
-                        </div>
-                    </form>
-            </li>
-        </ul>
-    </aside>
 </div>
+
+

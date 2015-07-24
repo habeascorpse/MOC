@@ -6,7 +6,8 @@
 
 }
 .talk-screen{
-  background: #fff;
+  background: #FFF68F;
+  opacity: .8;
   height: 300px;
   overflow-y: scroll;
   border: solid 1px #ccc;
@@ -19,6 +20,7 @@
 }
 .progress-talk span{
   color: tomato;
+  background-color: #FFF68E;
 }
 .progress-talk label{
   color: #333;

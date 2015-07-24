@@ -57,7 +57,7 @@ public class MessageController {
                 
                 UserGroup userGroup = userGroupService.getByUserAndGroup(user, group);
                 List<MocMessage> lista = messageService.getMessageByGroup(userGroup);
-                System.out.println(lista.toString());
+                
                 return lista;
             }
             else {

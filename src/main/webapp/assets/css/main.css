@@ -12,6 +12,11 @@
 
 }
 
+.divview {
+    margin: 0;
+    padding: 0;
+}
+
 body {
   
   background: -webkit-linear-gradient(90deg, #ECE9E6 10%, #FFFFFF 90%); /* Chrome 10+, Saf5.1+ */

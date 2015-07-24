@@ -1,0 +1,49 @@
+.moc-ribbon {
+  width: 100%;
+  height: 30vh;
+  background-color: #3F51B5;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.moc-main {
+  margin-top: -25vh;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+
+.moc-header .mdl-layout__header-row {
+ // padding-left: 40px;
+}
+
+.moc-container {
+  max-width: 1600px;
+  width: calc(100% - 16px);
+  margin: 0 auto;
+}
+
+.moc-content {
+  border-radius: 2px;
+  padding: 80px 56px;
+  margin-bottom: 80px;
+}
+
+.moc-layout.is-small-screen .moc-content {
+  padding: 40px 28px;
+}
+
+.moc-content h3 {
+  margin-top: 48px;
+}
+
+.moc-footer {
+  padding-left: 40px;
+}
+
+.moc-footer .mdl-mini-footer--link-list a {
+  font-size: 13px;
+}
+
+/* talk */

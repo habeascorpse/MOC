@@ -18,27 +18,16 @@
                 </div>
             </div>
 
-            <!-- Navigation. We hide it in small screens.
-            <nav class="mdl-navigation mdl-layout--large-screen-only">
-              <a class="mdl-navigation__link" href="">Link</a>
-              <a class="mdl-navigation__link" href="">Link</a>
-            </nav>
-            -->
 
-
-            <!-- Right aligned menu below button -->
-            <button id="demo-menu-lower-right"
-                    class="mdl-button mdl-js-button mdl-button--icon">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="actions">
                 <i class="material-icons">more_vert</i>
             </button>
-
-            <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                for="demo-menu-lower-right">
-                <li class="mdl-menu__item">Some Action</li>
-                <li class="mdl-menu__item">Another Action</li>
-                <li disabled class="mdl-menu__item">Disabled Action</li>
-                <li class="mdl-menu__item">Yet Another Action</li>
+            <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="actions">
+                <li class="mdl-menu__item">About</li>
+                <li class="mdl-menu__item">Contact</li>
+                <li class="mdl-menu__item">Legal information</li>
             </ul>
+
         </div>
     </header>
     <div class="mdl-layout__drawer">
@@ -57,21 +46,19 @@
                     <div class="mdl-cell mdl-cell--12-col">
                         <div class="talk-screen"  >
                             <div class="progress-talk" ng-repeat="message in messages" >
-                                <span>{{message.userGroup.mocUser.login}} - at {{message.sendDate}} </span> says:
-                                <p>
-                                    <label>{{message.text}}</label>
-                                </p>
+                                <span>{{message.userGroup.mocUser.login}} :</span>                                
+                                <label>{{message.text}}</label>
                             </div>
                         </div>
                     </div>
                     <form ng-submit="sendMessage(selectedGroup)">
                         <div class="mdl-cell mdl-cell--11-col mdl-cell--3-col-phone mdl-cell--7-col-tablet">
-                            
-                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label large-talk">
-                                    <textarea rows=3 class="mdl-textfield__input" id="comment" ng-model="textMessage.text" ></textarea>
-                                    <label for="comment" class="mdl-textfield__label">Write something</label>
-                                </div>
-                            
+
+                            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label large-talk">
+                                <textarea rows=3 class="mdl-textfield__input" id="comment" ng-model="textMessage.text" ></textarea>
+                                <label for="comment" class="mdl-textfield__label">Write something</label>
+                            </div>
+
                         </div>
                         <div class="mdl-cell mdl-cell--1-col">
                             <!-- Colored FAB button with ripple -->
@@ -100,5 +87,23 @@
                 </div>
             </div>
         </div>
+        <div>
+            <div>
+                <input type="text" ng-model="search"/>
+            </div>
+            <div>
+                <button type="button" ng-click="searchContact(search)">
+                    pesquisar contato
+                </button>
+            </div>
+        </div>
+        <div ng-repeat="contact in contacts" >
+            <p>
+                <span>{{contact.name}} - {{contact.login}}</span>
+                <button ng-click="addContact(contact)" type="button" >add contact</button>
+            </ p>
+
+        </div>
+
     </main>
 </div>

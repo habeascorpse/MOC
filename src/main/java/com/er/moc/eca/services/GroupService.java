@@ -25,13 +25,12 @@ public class GroupService extends GenericService<MocGroup> {
     }
 
     public List<MocGroup> getAllFromUser(MocUser user) {
-        try {
-            return pt.createNamedQuery("Group.getAllByUser")
+        
+            List<MocGroup> groups = pt.createNamedQuery("Group.getAllByUser")
                     .setParameter("user", user)
                     .getResultList();
-        } catch (Exception e) {
-            return new ArrayList<MocGroup>();
-        }
+            return groups;
+        
     }
     
     public MocGroup newGroupFromContactConfirmation(MocUser user1, MocUser user2) {

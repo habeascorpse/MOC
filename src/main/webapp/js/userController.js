@@ -1,5 +1,5 @@
 
-MocApp.controller('UserController', function ($scope, $http, $location, State) {
+MocApp.controller('UserController', function ($scope, $http, $location, State, $cookies) {
     $scope.voucher = State.formData['voucher'];
 
     $scope.user = {
@@ -54,15 +54,17 @@ MocApp.controller('UserController', function ($scope, $http, $location, State) {
     
     $scope.authenticate = function() {
         
+        $cookies.put('voucher','');
         
         $http.post(State.formData['url'] + 'users/authenticate',$scope.user ).
         success(function(data, status, headers, config) {
             $scope.voucher = data;
+            $cookies.put('voucher',data);
             State.formData['voucher'] = data;
-            $location.path('/message').replace();
+            $location.path('message').replace();
         })
         .error(function() {
-            $scope.voucher = "sem entrada";
+            $scope.msg = "Authentication failure!";
         });
     };
 });

@@ -39,13 +39,19 @@ public class UserService extends GenericService<MocUser> {
 
     }
     
-    public List<MocUser> search(String search) {
+    public List<MocUser> search(String search, MocUser user) {
 
         try {
-            return pt
+            
+            List<MocUser> contacts =  pt
                     .createNamedQuery("User.search")
                     .setParameter("search", "%"+search+"%")
                     .getResultList();
+            contacts.remove(user);
+            contacts.removeAll(user.getContacts());
+            
+            return contacts;
+            
         } catch (NoResultException e) {
             return new ArrayList<MocUser>();
         }
@@ -85,7 +91,7 @@ public class UserService extends GenericService<MocUser> {
         
         // Todo Enviar email com confirmação de usuário e senha Moc23P)(44 mocsysbr
         String msgMail = "Hello "+ confirm.getMocUser().getName() +", Thank You for choosen MOC, a PQP member<br />"
-                + "please click <a href=\"http://localhost:8080/moc/rs/users/confirm/" + confirm.getConfirmationHash() + "\"> here </a> to confirm your account!";
+                + "please click <a href=\"http://cloudmessenger.com.br/moc/rs/users/confirm/" + confirm.getConfirmationHash() + "\"> here </a> to confirm your account!";
         SendMail mail = new SendMail("MocSysBR", confirm.getMocUser().getEmail(), "MOC - Account Confirmation", msgMail);
         mail.start();
         
@@ -146,7 +152,7 @@ public class UserService extends GenericService<MocUser> {
         user.getContacts().add(contact);
         
         user  = merge(user);
-        return EReturn.SUCESS;
+        return confirmContact(contact, user);
     }
     
     public EReturn confirmContact(MocUser user, MocUser contact) {

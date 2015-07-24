@@ -1,72 +1,65 @@
-<!DOCTYPE html>
-<html class="no-js" lang="pt-br">
-    <head>
-        <title>MOC : cloud messenger</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name=HandheldFriendly content=True>
-        <meta name=MobileOptimized content=320>
 
-        <!-- Stylesheets -->
-        <link href='http://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
 
-        <link href="assets/css/style.css" rel="stylesheet" />
-        <link href="assets/css/form.css" rel="stylesheet" />
-        <link href="assets/css/normalize.css" rel="stylesheet" />
 
-        <script src="assets/js/modernizr.js"></script>
+<div class="moc-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100">
+    <header class="moc-header mdl-layout__header mdl-layout__header--scroll mdl-color--red">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">MOC</span>
+        <div class="mdl-layout-spacer"></div>
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" href="#/login">LOG IN</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">MOC</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="#/login">LOG IN</a>
+      </nav>
+    </div>
 
-        <script src="js/angular/angular.js"></script>
-        <script src="js/angular/angular-route.js"></script>
-        <script src="js/app.js"></script>
-        <script src="js/userController.js"></script>
-    </head>
-    <body ng-app="MocApp">
-        <div class="content clearfix wrapper">
-            <div class="moc-logo clearfix">
-                <h1>MOC</h1>
-                <h2>Messenger on Cloud </h2>
-                <p>talk to anyone anywhere in the world</p>
-                <p class="eff">Easy, fast and free!</p>
+    <div class="moc-ribbon"></div>
+    <main class="moc-main mdl-layout__content">
+      <div class="moc-container mdl-grid">
+        <div class="mdl-cell mdl-cell--1-col mdl-cell--hide-tablet mdl-cell--hide-phone"></div>
+        <div class="moc-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--6-col">
 
-            </div>
-            <div class="form-sign-up clearfix" ng-controller="UserController">
-                <h1>Sing up</h1>
-                <h1 class="sign-in">
-                    <a href="#">Sign In</a>
-                </h1>
-                <form ng-submit="createUser()" >
-                    <label>Your Name</label>
-                    <input type="text" placeholder="type your full name" required ng-model="user.name" />
-                    <label>Your Login</label>
-                    <input type="text" placeholder="type your login" required ng-model="user.login" />
-                    <label>Your E-mail</label>
-                    <input type="email" placeholder="type your e-mail" required ng-model="user.email" />
-                    <label>Your Password</label>
-                    <input type="password"  required ng-model="user.password" />
+          <h2>Messenger On Cloud</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
 
-                    <p ng-init="getCountries()">
-                        <label>Your Country</label>
-                        <select ng-model="selectedCountry" convert-to-number > 
-                            <option ng-repeat="country in countries" value="{{country.id}}">{{country.name}}</option>
-                        </select>
-                    </p>
-
-                    <input type="submit" value="Submit" class="btn-submit" />
-                </form>
-                <div>
-                    {{voucher}}
-                    {{msg}}
-                </div>
-            </div>
-
-            <footer class="clearfix">
-                <ul>
-                    <li><a href="#" title="something">About</a></li>
-                    <li><a href="#" title="something">Help/Support</a></li>
-                </ul>
-            </footer>
         </div>
+        <div class="moc-content mdl-cell mdl-cell--4-col mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800">
+          <h3>Sign up, it's free</h3>
+          <form ng-submit="createUser()" >
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="name" ng-model="user.name" />
+              <label class="mdl-textfield__label" for="name">Type your full name</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" id="email" type="email" pattern="^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$" ng-model="user.email" />
+              <label class="mdl-textfield__label" for="email">Choose a valid e-mail</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="user" ng-model="user.login" />
+              <label class="mdl-textfield__label" for="user">Type your username</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="password" id="passwd" ng-model="user.password" />
+              <label class="mdl-textfield__label" for="passwd">Type a password</label>
+            </div>
 
-    </body>
-</html>
+              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+                create
+              </button>
+          </form>
+        </div>
+      </div>
+      <footer class="moc-footer mdl-mini-footer">
+        <div class="mdl-mini-footer--left-section">
+          Copyright (c) 2015 Copyright Holder All Rights Reserved.
+        </div>
+      </footer>
+    </main>
+  </div>

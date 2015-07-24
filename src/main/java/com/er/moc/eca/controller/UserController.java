@@ -41,18 +41,6 @@ public class UserController implements Serializable {
     @Inject
     private VoucherService voucherService;
 
-    @Path("/find/{search}/{key}")
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response findUsers(@PathParam("search") String search, @PathParam("key") String key) {
-
-        if (AuthControl.vouchers.containsKey(key)) {
-            AuthControl.vouchers.get(key).newInteraction();
-            return Response.ok(userModel.search(search).toArray(new MocUser[]{})).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-    }
 
     @Path("/get/all/{key}")
     @GET
@@ -136,58 +124,5 @@ public class UserController implements Serializable {
 
     }
 
-    @Path("addcontact/{key}")
-    @POST
-    @Consumes(MediaType.TEXT_PLAIN)
-    public Response addContact(String contact, @PathParam("key") String key) {
-        if (AuthControl.vouchers.containsKey(key)) {
-            AuthControl.vouchers.get(key).newInteraction();
-
-            MocUser userContact = userModel.getByLogin(contact);
-            if (userContact != null) {
-                
-                if (userModel.addContact(AuthControl.vouchers.get(key).getUser(), userContact).isError()) 
-                    return Response.serverError().build();
-                else
-                    return Response.accepted().build();
-
-            }
-
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-        else {
-
-            return Response.status(Response.Status.FORBIDDEN).build();
-
-        }
-
-    }
-    
-    @Path("confirmcontact/{key}")
-    @POST
-    @Consumes(MediaType.TEXT_PLAIN)
-    public Response aconfirmContact(String contact, @PathParam("key") String key) {
-        if (AuthControl.vouchers.containsKey(key)) {
-            AuthControl.vouchers.get(key).newInteraction();
-
-            MocUser userContact = userModel.getByLogin(contact);
-            if (userContact != null) {
-                
-                if (userModel.confirmContact(AuthControl.vouchers.get(key).getUser(), userContact).isError()) 
-                    return Response.serverError().build();
-                else
-                    return Response.accepted().build();
-
-            }
-
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
-        else {
-
-            return Response.status(Response.Status.FORBIDDEN).build();
-
-        }
-
-    }
 
 }

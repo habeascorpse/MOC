@@ -4,34 +4,44 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<html>
+<html lang="pt-BR" ng-app="MocApp">
     <head>
-        <title>MOC : cloud messenger</title>
+        <meta charset="utf-8">
         <base href="/moc/" />
-        <meta charset="UTF-8">
 
-        <script src="js/angular/angular.js"></script>
-        <script src="js/angular/angular-route.js"></script>
-        <script src="js/app.js"></script> 
-        <script src="js/userController.js"></script>
-        <script src="js/messageController.js"></script>
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="MobileOptimized" content="320" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content="MOC web messenger" />
+        <meta name="keywords" content="WEB, MESSENGER, CLOUD, SAAS" />
 
-        
-        
-        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css" /> 
+        <title>MOC</title>
+
+        <link rel="stylesheet" href="assets/css/app.css" />
+        <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.pink-deep_orange.min.css" /> 
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <style>
+
+        </style>
 
 
-        <link href="assets/css/main.css" rel="stylesheet" />
-        <link href="assets/css/reset.css" rel="stylesheet" />
         <link rel="stylesheet" href="assets/css/talk.css" />
-        <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' />
-        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,100,100italic' rel='stylesheet' />
 
-        
+
     </head>
-    <body ng-app="MocApp">
-        <div ng-view></div>
+    <body>
+        <div ng-view>
+        </div>
+
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+        <script src="js/angular/angular.js" ></script>
+        <script src="js/angular/angular-route.js" ></script>
+        <script src="js/angular/angular-cookies.js" ></script>
+                
+	
+        <script src="/moc/js/app.js"></script> 
+        <script src="/moc/js/userController.js"></script>
+        <script src="/moc/js/messageController.js"></script>
     </body>
 </html>

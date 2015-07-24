@@ -38,7 +38,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries( {
     @NamedQuery(name = "User.getByLogin",query = "SELECT u FROM MocUser u WHERE u.login = :login"),
     @NamedQuery(name = "User.getByEmail",query = "SELECT u FROM MocUser u WHERE u.email = :email"),
-    @NamedQuery(name = "User.search",query = "SELECT u FROM MocUser u WHERE (u.email like :search or u.login like :search) and u.status = 1"),
+    @NamedQuery(name = "User.search",query = "SELECT u FROM MocUser u WHERE (u.email like :search or u.login like :search) and u.status = 1  "),
     @NamedQuery(name = "User.authenticate",query = "SELECT u FROM MocUser u WHERE u.login = :login and u.password = :password and u.status = 1"),
     @NamedQuery(name = "User.getByLoginAndEmail",query = "SELECT u FROM MocUser u WHERE u.login = :login and u.email = :email")
 })
