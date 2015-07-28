@@ -29,12 +29,16 @@ MocApp.controller('MessageController', function ($scope, $http, $location, State
     $scope.getMessagesFromGroup = function (group) {
 
         $scope.selectedGroup = group;
-        if ((group != null) && (group.name != null)) {
+        if ((group !== null) && (group.name !== null)) {
 
 
             $http.get(State.formData['url'] + 'message/get/' + group.name + '/' + $cookies.get('voucher')).
                     success(function (data, status, headers, config) {
                         $scope.messages = data;
+                        $scope.messages.forEach(function(entry) {
+                            entry.sendDate = new Date(entry.sendDate);
+                            entry.sendDate = entry.sendDate.getHours() +":" + entry.sendDate.getMinutes() +":" + entry.sendDate.getSeconds();
+                        });
                         rolar();
 
                     })
@@ -49,7 +53,7 @@ MocApp.controller('MessageController', function ($scope, $http, $location, State
     };
 
     $scope.sendMessage = function (group) {
-        if ((group != null) && (group.name != null)) {
+        if ((group !== null) && (group.name !== null)) {
 
             $http.post(State.formData['url'] + 'message/send/' + group.name + '/' + $cookies.get('voucher'), $scope.textMessage).
                     success(function (data, status, headers, config) {
@@ -66,6 +70,7 @@ MocApp.controller('MessageController', function ($scope, $http, $location, State
     };
 
     $scope.searchContact = function (search) {
+        $scope.contacts = null;
         $http.get(State.formData['url'] + 'contact/find/' + search + '/' + $cookies.get('voucher')).
                 success(function (data, status, headers, config) {
                     $scope.contacts = data;
@@ -79,6 +84,10 @@ MocApp.controller('MessageController', function ($scope, $http, $location, State
     };
 
     $scope.main = function () {
+        
+        if ($cookies.get('voucher') === '' || $cookies.get('voucher') === null ) {
+            $location.path('login').replace();
+        }
 
         $scope.getMessagesFromGroup($scope.selectedGroup);
         $scope.getGroups();
@@ -122,6 +131,15 @@ MocApp.controller('MessageController', function ($scope, $http, $location, State
     $scope.logoff = function() {
         $cookies.put('voucher','');
         $location.path('login').replace();  
+    };
+    
+    $scope.getClassTalkBox = function(message) {
+        
+        if (message.userGroup.mocUser.login === $cookies.get('user'))
+            return "me";
+        else
+            return "their";
+        
     };
     
 

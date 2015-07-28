@@ -64,6 +64,7 @@ MocApp.controller('UserController', function ($scope, $http, $location, State, $
             $cookies.put('voucher',data);
             State.formData['voucher'] = data;
             $location.path('message').replace();
+            $cookies.put('user',$scope.user.login);
         })
         .error(function() {
             $scope.msg = "Authentication failure!";

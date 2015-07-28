@@ -37,9 +37,13 @@
                     <div class="mdl-grid">
                         <div class="mdl-cell mdl-cell--12-col">
                             <div class="talk-screen" id="talk-screen"  >
-                                <div class="progress-talk" ng-repeat="message in messages" >
-                                    <span>{{message.userGroup.mocUser.login}} :</span>                                
-                                    <label>{{message.text}}</label>
+                                <div ng-repeat="message in messages">
+                                    <div   class="progress-talk {{getClassTalkBox(message)}}" >
+                                        <span >{{message.userGroup.mocUser.login}} at {{message.sendDate}} :</span>  
+                                        <p>
+                                            <label>{{message.text}}</label>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -79,8 +83,6 @@
                         <ul ng-repeat="group in groups" >
                             <li class="contact_list" ng-click="getMessagesFromGroup(group)">{{group.name}}</li>
                         </ul>
-
-
                     </div>
                     <div class="mdl-tabs__panel " id="sea">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
