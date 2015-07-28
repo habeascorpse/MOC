@@ -10,6 +10,7 @@ import com.er.moc.eca.model.entities.MocMessage;
 import com.er.moc.eca.model.entities.MocUser;
 import com.er.moc.eca.model.entities.UserGroup;
 import com.er.moc.eca.transaction.EnumConnection;
+import java.util.Collections;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -33,10 +34,14 @@ public class MessageService extends GenericService<MocMessage> {
     
     public List<MocMessage> getMessageByGroup(UserGroup userGroup) {
         
-        return pt.createNamedQuery("Message.getMessagesByGroup")
+        List<MocMessage> list = pt.createNamedQuery("Message.getMessagesByGroup")
                 .setParameter("group", userGroup.getMocGroup())
                 .setMaxResults(maxResult)
                 .getResultList();
+        
+        Collections.reverse(list);
+        
+        return list;
         
     }
     
