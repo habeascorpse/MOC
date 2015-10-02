@@ -3,24 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.er.moc.eca.services;
+package com.er.moc.eca.services.impl;
 
-import com.er.moc.eca.model.entities.MocGroup;
+import com.er.moc.eca.services.EReturn;
 import com.er.moc.eca.model.entities.MocMessage;
-import com.er.moc.eca.model.entities.MocUser;
 import com.er.moc.eca.model.entities.UserGroup;
-import com.er.moc.eca.transaction.EnumConnection;
+import com.er.moc.eca.services.MessageServiceAPI;
 import java.util.Collections;
 import java.util.List;
-import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 
 /**
  *
  * @author alan
  */
 //@ApplicationScoped
-public class MessageService extends GenericService<MocMessage> {
+public class MessageService extends MessageServiceAPI {
     
     /*
     @Inject
@@ -29,9 +26,9 @@ public class MessageService extends GenericService<MocMessage> {
     private static final Integer maxResult = 50;
 
     public MessageService() {
-        super(MocMessage.class, EnumConnection.MOC);
     }
     
+    @Override
     public List<MocMessage> getMessageByGroup(UserGroup userGroup) {
         
         List<MocMessage> list = pt.createNamedQuery("Message.getMessagesByGroup")
@@ -45,6 +42,7 @@ public class MessageService extends GenericService<MocMessage> {
         
     }
     
+    @Override
     public EReturn sendMessage(MocMessage message) {
         return this.save(message);
         

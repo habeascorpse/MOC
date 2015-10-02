@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.er.moc.eca.services;
+package com.er.moc.eca.services.impl;
 
 import com.er.moc.eca.auth.Voucher;
 import com.er.moc.eca.model.entities.MocUser;
+import com.er.moc.eca.services.VoucherServiceAPI;
 import java.util.Hashtable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +21,7 @@ import javax.naming.AuthenticationException;
  * @author alan
  */
 @ApplicationScoped
-public class VoucherService {
+public class VoucherService extends VoucherServiceAPI{
     
     
     
@@ -35,6 +36,7 @@ public class VoucherService {
     private UserService userModel;
     
     
+    @Override
     public Voucher authenticate(String login, String password) throws AuthenticationException {
         
         MocUser user = userModel.Authenticate(login, password);

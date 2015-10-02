@@ -9,10 +9,12 @@ import com.er.moc.eca.model.entities.MocGroup;
 import com.er.moc.eca.model.entities.MocMessage;
 import com.er.moc.eca.model.entities.MocUser;
 import com.er.moc.eca.model.entities.UserGroup;
-import com.er.moc.eca.services.AuthControl;
-import com.er.moc.eca.services.GroupService;
-import com.er.moc.eca.services.MessageService;
-import com.er.moc.eca.services.UserGroupService;
+import com.er.moc.eca.services.GroupServiceAPI;
+import com.er.moc.eca.services.MessageServiceAPI;
+import com.er.moc.eca.services.UserGroupServiceAPI;
+import com.er.moc.eca.services.impl.AuthControl;
+import com.er.moc.eca.services.impl.GroupService;
+import com.er.moc.eca.services.impl.UserGroupService;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -36,13 +38,13 @@ import javax.ws.rs.core.Response;
 public class MessageController {
     
     @Inject
-    private MessageService messageService;
+    private MessageServiceAPI messageService;
     
     @Inject
-    private GroupService groupService;
+    private GroupServiceAPI groupService;
     
     @Inject
-    private UserGroupService userGroupService;
+    private UserGroupServiceAPI userGroupService;
     
     @Path("/get/{group}/{key}")
     @GET

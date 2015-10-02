@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.er.moc.eca.services;
+package com.er.moc.eca.services.impl;
 
+import com.er.moc.eca.services.GenericService;
 import com.er.moc.eca.model.entities.ConfirmationUser;
+import com.er.moc.eca.services.ConfirmationServiceAPI;
 import com.er.moc.eca.transaction.EnumConnection;
 import javax.persistence.NoResultException;
 
@@ -13,12 +15,12 @@ import javax.persistence.NoResultException;
  *
  * @author alan
  */
-public class ConfirmationModel extends GenericService<ConfirmationUser> {
+public class ConfirmationService extends ConfirmationServiceAPI{
 
-    public ConfirmationModel() {
-        super(ConfirmationUser.class, EnumConnection.MOC);
+    public ConfirmationService() {
     }
     
+    @Override
     public ConfirmationUser getByHash(String hash) {
         
         try {

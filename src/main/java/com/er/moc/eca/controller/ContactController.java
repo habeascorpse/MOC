@@ -6,8 +6,8 @@
 package com.er.moc.eca.controller;
 
 import com.er.moc.eca.model.entities.MocUser;
-import com.er.moc.eca.services.AuthControl;
-import com.er.moc.eca.services.UserService;
+import com.er.moc.eca.services.UserServiceAPI;
+import com.er.moc.eca.services.impl.AuthControl;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -30,7 +30,7 @@ import javax.ws.rs.core.Response;
 
 public class ContactController {
     @Inject
-    private UserService userService;
+    private UserServiceAPI userService;
     
     @Path("add/{key}")
     @POST

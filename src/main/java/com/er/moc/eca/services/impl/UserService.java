@@ -3,29 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.er.moc.eca.services;
+package com.er.moc.eca.services.impl;
 
+import com.er.moc.eca.services.GenericService;
+import com.er.moc.eca.services.EReturn;
 import com.er.moc.eca.config.HashGenerator;
 import com.er.moc.eca.config.SendMail;
 import com.er.moc.eca.model.entities.ConfirmationUser;
 import com.er.moc.eca.model.entities.MocUser;
-import com.er.moc.eca.transaction.EnumConnection;
+import com.er.moc.eca.services.UserServiceAPI;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.persistence.NoResultException;
 
 /**
  *
  * @author alan
  */
-public class UserService extends GenericService<MocUser> {
+public class UserService extends UserServiceAPI {
 
     public UserService() {
-        super(MocUser.class, EnumConnection.MOC);
     }
 
+    @Override
     public MocUser getByLogin(String login) {
 
         try {
@@ -39,6 +39,7 @@ public class UserService extends GenericService<MocUser> {
 
     }
     
+    @Override
     public List<MocUser> search(String search, MocUser user) {
 
         try {
@@ -58,6 +59,7 @@ public class UserService extends GenericService<MocUser> {
 
     }
     
+    @Override
     public MocUser Authenticate(String login, String password) {
         
         password = HashGenerator.generateHash(password);
@@ -74,6 +76,7 @@ public class UserService extends GenericService<MocUser> {
 
     }
     
+    @Override
     public MocUser getByEmail(String email) {
 
         try {
@@ -97,6 +100,7 @@ public class UserService extends GenericService<MocUser> {
         
     }
 
+    @Override
     public EReturn createUser(MocUser user) {
 
         if ((getByLogin(user.getLogin()) != null) || (getByEmail(user.getEmail()) != null)) {
@@ -107,7 +111,7 @@ public class UserService extends GenericService<MocUser> {
         user.setPassword(HashGenerator.generateHash(user.getPassword()));
         ConfirmationUser confirmation = new ConfirmationUser(user);
         
-        new ConfirmationModel().merge(confirmation);
+        new ConfirmationService().merge(confirmation);
         
         this.sendMailConfirmation(confirmation);
 
@@ -117,13 +121,14 @@ public class UserService extends GenericService<MocUser> {
     }
     
     
+    @Override
     public EReturn confirmUser(String hash) {
-        ConfirmationUser confirm = new ConfirmationModel().getByHash(hash);
+        ConfirmationUser confirm = new ConfirmationService().getByHash(hash);
         if (confirm != null) {
             confirm.getMocUser().setStatus(1);
             this.merge(confirm.getMocUser());
             
-            new ConfirmationModel().remove(confirm);
+            new ConfirmationService().remove(confirm);
             return EReturn.SUCESS;
         }
         else        
@@ -141,6 +146,7 @@ public class UserService extends GenericService<MocUser> {
         return Boolean.FALSE;
     }
     
+    @Override
     public EReturn addContact(MocUser user, MocUser contact) {
         
         if (hasContact(user, contact))
@@ -155,6 +161,7 @@ public class UserService extends GenericService<MocUser> {
         return confirmContact(contact, user);
     }
     
+    @Override
     public EReturn confirmContact(MocUser user, MocUser contact) {
         
         if (!hasContact(user, contact)) {

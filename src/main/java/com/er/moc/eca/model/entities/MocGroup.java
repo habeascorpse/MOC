@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries( {
     @NamedQuery(name = "Group.getAllByUser",query = "SELECT g FROM MocGroup g, UserGroup ug WHERE ug.mocUser = :user AND g IN (ug.mocGroup)"),
+    @NamedQuery(name = "Group.getByName",query = "SELECT g FROM MocGroup g WHERE g.name = :name "),
     @NamedQuery(name = "Group.getAllByUserAndName",query = "SELECT g FROM MocGroup g, UserGroup ug WHERE ug.mocUser = :user AND g.name = :group AND ug.mocGroup = g")
 })
 public class MocGroup implements Serializable {

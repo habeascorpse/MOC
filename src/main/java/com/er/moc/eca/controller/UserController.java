@@ -6,17 +6,18 @@
 package com.er.moc.eca.controller;
 
 import com.er.moc.eca.auth.Voucher;
-import com.er.moc.eca.services.CountryService;
-import com.er.moc.eca.services.UserService;
 import com.er.moc.eca.model.entities.Country;
 import com.er.moc.eca.model.entities.MocUser;
-import com.er.moc.eca.services.AuthControl;
-import com.er.moc.eca.services.VoucherService;
+import com.er.moc.eca.services.CountryServiceAPI;
+import com.er.moc.eca.services.UserServiceAPI;
+import com.er.moc.eca.services.VoucherServiceAPI;
+import com.er.moc.eca.services.impl.AuthControl;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -35,17 +36,17 @@ import javax.ws.rs.core.Response;
 public class UserController implements Serializable {
 
     @Inject
-    private UserService userModel;
+    private UserServiceAPI userModel;
     @Inject
-    private CountryService countryModel;
+    private CountryServiceAPI countryModel;
     @Inject
-    private VoucherService voucherService;
+    private VoucherServiceAPI voucherService;
 
 
     @Path("/get/all/{key}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getAllUsers(@PathParam("key") String key) {
+    public Response getAllUsers(@NotNull @PathParam("key") String key) {
 
         if (AuthControl.vouchers.containsKey(key)) {
             AuthControl.vouchers.get(key).newInteraction();
