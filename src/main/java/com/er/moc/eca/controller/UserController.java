@@ -42,18 +42,13 @@ public class UserController implements Serializable {
     @Inject
     private VoucherServiceAPI voucherService;
 
-
     @Path("/get/all/{key}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllUsers(@NotNull @PathParam("key") String key) {
 
-        if (AuthControl.vouchers.containsKey(key)) {
-            AuthControl.vouchers.get(key).newInteraction();
-            return Response.ok(userModel.getAll().toArray(new MocUser[]{})).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+        return Response.ok(userModel.getAll().toArray(new MocUser[]{})).build();
+
     }
 
     @Path("/get/{id}/{key}")
@@ -61,14 +56,9 @@ public class UserController implements Serializable {
     @Produces(MediaType.APPLICATION_JSON)
     public MocUser getById(@PathParam("id") String id, @PathParam("key") String key) {
 
-        if (AuthControl.vouchers.containsKey(key)) {
-            AuthControl.vouchers.get(key).newInteraction();
-            Long cod = Long.parseLong(id);
+        Long cod = Long.parseLong(id);
 
-            return userModel.getByID(cod);
-        } else {
-            return null;
-        }
+        return userModel.getByID(cod);
 
     }
 
@@ -92,7 +82,7 @@ public class UserController implements Serializable {
         return countryModel.getAll();
     }
 
-    @Path("/confirm/{hash}")
+    @Path("/confirm/{key}")
     @GET
     @Produces(MediaType.TEXT_HTML)
     public Response confirm(@PathParam("hash") String hash) {
@@ -124,6 +114,5 @@ public class UserController implements Serializable {
         }
 
     }
-
 
 }

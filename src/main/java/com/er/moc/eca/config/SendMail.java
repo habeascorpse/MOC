@@ -76,7 +76,7 @@ public class SendMail extends Thread {
 
         //Cria um autenticador que sera usado a seguir  
         SimpleAuth auth = null;
-        auth = new SimpleAuth("no-reply@cloudmessenger.com.br", "mocpadrao");
+        auth = new SimpleAuth("mocsysbr@gmail.com", "Moc23P)(44");
 
         //Session - objeto que ira realizar a conexão com o servidor  
         /*Como há necessidade de autenticação é criada uma autenticacao que 
@@ -126,7 +126,7 @@ public class SendMail extends Thread {
              *  2 - seu nome de usuario do gmail 
              *  3 - sua senha do gmail 
              */
-            tr.connect(mailSMTPServer, "no-reply@cloudmessenger.com.br", "mocpadrao");
+            tr.connect(mailSMTPServer, "mocsysbr@gmail.com", "Moc23P)(44");
             msg.saveChanges(); // don't forget this  
             //envio da mensagem  
             tr.sendMessage(msg, msg.getAllRecipients());

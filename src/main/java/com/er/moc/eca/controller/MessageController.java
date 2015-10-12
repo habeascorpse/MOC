@@ -13,8 +13,6 @@ import com.er.moc.eca.services.GroupServiceAPI;
 import com.er.moc.eca.services.MessageServiceAPI;
 import com.er.moc.eca.services.UserGroupServiceAPI;
 import com.er.moc.eca.services.impl.AuthControl;
-import com.er.moc.eca.services.impl.GroupService;
-import com.er.moc.eca.services.impl.UserGroupService;
 import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -36,65 +34,50 @@ import javax.ws.rs.core.Response;
 @Path("message")
 @RequestScoped
 public class MessageController {
-    
+
     @Inject
     private MessageServiceAPI messageService;
-    
+
     @Inject
     private GroupServiceAPI groupService;
-    
+
     @Inject
     private UserGroupServiceAPI userGroupService;
-    
+
     @Path("/get/{group}/{key}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<MocMessage> getMessageByGroup(@PathParam("key") String key, @PathParam("group") String groupName) throws NoContentException {
 
-        if (AuthControl.vouchers.containsKey(key)) {
-            AuthControl.vouchers.get(key).newInteraction();
-            MocUser user = AuthControl.vouchers.get(key).getUser();
-            MocGroup group = groupService.getGroupByName(user, groupName);
-            if ( group != null) {
-                
-                UserGroup userGroup = userGroupService.getByUserAndGroup(user, group);
-                List<MocMessage> lista = messageService.getMessageByGroup(userGroup);
-                
-                return lista;
-            }
-            else {
-                throw new NoContentException("");
-            }
-            
-            
+        MocUser user = AuthControl.vouchers.get(key).getUser();
+        MocGroup group = groupService.getGroupByName(user, groupName);
+        if (group != null) {
+
+            UserGroup userGroup = userGroupService.getByUserAndGroup(user, group);
+            List<MocMessage> lista = messageService.getMessageByGroup(userGroup);
+
+            return lista;
         } else {
-            throw new ForbiddenException("This user does not have permission to access this recourse ");
+            throw new NoContentException("");
         }
+
     }
-    
-    
+
     @Path("send/{group}/{key}")
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response sendMessage(MocMessage message, @PathParam("group") String groupName, @PathParam("key") String key) {
-        
-        if (AuthControl.vouchers.containsKey(key)) {
-            AuthControl.vouchers.get(key).newInteraction();
-            
-            MocUser user = AuthControl.vouchers.get(key).getUser();
-            MocGroup group = groupService.getGroupByName(user, groupName);
-            if ( group != null) {
-                message.setUserGroup(userGroupService.getByUserAndGroup(user, group));
-                messageService.sendMessage(message);
-                return Response.ok().build();
-            }
-            else {
-                return Response.status(Response.Status.NO_CONTENT).build();
-            }
-            
+
+        MocUser user = AuthControl.vouchers.get(key).getUser();
+        MocGroup group = groupService.getGroupByName(user, groupName);
+        if (group != null) {
+            message.setUserGroup(userGroupService.getByUserAndGroup(user, group));
+            messageService.sendMessage(message);
+            return Response.ok().build();
+        } else {
+            return Response.status(Response.Status.NO_CONTENT).build();
         }
-        
-        return Response.ok().build();
+
     }
-    
+
 }

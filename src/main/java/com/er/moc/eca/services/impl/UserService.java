@@ -128,7 +128,7 @@ public class UserService extends UserServiceAPI {
             confirm.getMocUser().setStatus(1);
             this.merge(confirm.getMocUser());
             
-            new ConfirmationService().remove(confirm);
+            
             return EReturn.SUCESS;
         }
         else        
@@ -169,7 +169,6 @@ public class UserService extends UserServiceAPI {
                 user.setContacts(new ArrayList<MocUser>());
             user.getContacts().add(contact);
             user = merge(user);
-            new GroupService().newGroupFromContactConfirmation(user, contact);
             return EReturn.SUCESS;
             
         }

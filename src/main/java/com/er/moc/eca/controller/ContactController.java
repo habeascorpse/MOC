@@ -23,81 +23,61 @@ import javax.ws.rs.core.Response;
  *
  * @author alan
  */
-
-
 @Path("contact")
 @RequestScoped
 
 public class ContactController {
+
     @Inject
     private UserServiceAPI userService;
-    
+
     @Path("add/{key}")
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
     public Response addContact(String contact, @PathParam("key") String key) {
-        if (AuthControl.vouchers.containsKey(key)) {
-            AuthControl.vouchers.get(key).newInteraction();
 
-            MocUser userContact = userService.getByLogin(contact);
-            if (userContact != null) {
-                
-                if (userService.addContact(AuthControl.vouchers.get(key).getUser(), userContact).isError()) 
-                    return Response.serverError().build();
-                else
-                    return Response.accepted().build();
+        MocUser userContact = userService.getByLogin(contact);
+        if (userContact != null) {
 
+            if (userService.addContact(AuthControl.vouchers.get(key).getUser(), userContact).isError()) {
+                return Response.serverError().build();
+            } else {
+                return Response.accepted().build();
             }
 
-            return Response.status(Response.Status.NOT_FOUND).build();
         }
-        else {
 
-            return Response.status(Response.Status.FORBIDDEN).build();
-
-        }
+        return Response.status(Response.Status.NOT_FOUND).build();
 
     }
-    
+
     @Path("confirm/{key}")
     @POST
     @Consumes(MediaType.TEXT_PLAIN)
     public Response aconfirmContact(String contact, @PathParam("key") String key) {
-        if (AuthControl.vouchers.containsKey(key)) {
-            AuthControl.vouchers.get(key).newInteraction();
 
-            MocUser userContact = userService.getByLogin(contact);
-            if (userContact != null) {
-                
-                if (userService.confirmContact(AuthControl.vouchers.get(key).getUser(), userContact).isError()) 
-                    return Response.serverError().build();
-                else
-                    return Response.accepted().build();
+        MocUser userContact = userService.getByLogin(contact);
+        if (userContact != null) {
 
+            if (userService.confirmContact(AuthControl.vouchers.get(key).getUser(), userContact).isError()) {
+                return Response.serverError().build();
+            } else {
+                return Response.accepted().build();
             }
 
-            return Response.status(Response.Status.NOT_FOUND).build();
         }
-        else {
 
-            return Response.status(Response.Status.FORBIDDEN).build();
-
-        }
+        return Response.status(Response.Status.NOT_FOUND).build();
 
     }
-    
+
     @Path("/find/{search}/{key}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response findUsers(@PathParam("search") String search, @PathParam("key") String key) {
 
-        if (AuthControl.vouchers.containsKey(key)) {
-            AuthControl.vouchers.get(key).newInteraction();
-            return Response.ok(userService.search(search, AuthControl.vouchers.get(key).getUser()).toArray(new MocUser[]{})).build();
-        } else {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
+        return Response.ok(userService.search(search, AuthControl.vouchers.get(key).getUser()).toArray(new MocUser[]{})).build();
+
     }
-    
-    
+
 }

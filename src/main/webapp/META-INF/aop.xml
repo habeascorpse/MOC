@@ -1,0 +1,10 @@
+<aspectj>
+    <aspects>
+        <aspect name="com.er.moc.eca.aspect.UserAspect" />
+    </aspects>
+    <weaver options="-verbose">
+              <include within="javax.*"/>
+              <include within="com.er.moc.eca.*"/>
+              <include within="org.aspectj.*"/>
+    </weaver>
+</aspectj>
