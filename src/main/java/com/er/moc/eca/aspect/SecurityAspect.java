@@ -6,11 +6,13 @@
 package com.er.moc.eca.aspect;
 
 import com.er.moc.eca.services.impl.AuthControl;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import javax.ws.rs.ForbiddenException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.reflect.CodeSignature;
 
 /**
  *
@@ -18,25 +20,29 @@ import org.aspectj.lang.annotation.Before;
  */
 @Aspect
 public class SecurityAspect {
-    
+
     @Before("execution(* com.er.moc.eca.controller..* (..))")
     public void checkVoucher(JoinPoint point) {
-        
-        for (Object obj: point.getArgs()) {
-            
-            for (Field f: obj.getClass().getDeclaredFields()) {
-                if (f.getName().equals("key")) {
-                    String key = (String) obj;
-                    if (AuthControl.vouchers.containsKey(key)) {
-                        AuthControl.vouchers.get(key).newInteraction();
-                    }
-                    else {
-                        throw new ForbiddenException();
-                    }
-                }
+        boolean isSecurity = false;
+        for (String str : ((CodeSignature) point.getStaticPart().getSignature()).getParameterNames()) {
+            System.out.println("nome: " + str);
+            if (str.equals("key")) {
+                isSecurity = true;
             }
         }
-        
+        if (!isSecurity) {
+            return;
+        }
+
+        for (Object obj : point.getArgs()) {
+
+            if (AuthControl.vouchers.containsKey(obj.toString())) {
+                AuthControl.vouchers.get(obj.toString()).newInteraction();
+                return;
+            }
+            
+        }
+        throw new ForbiddenException();
     }
-    
+
 }

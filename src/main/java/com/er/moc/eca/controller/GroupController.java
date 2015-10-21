@@ -12,6 +12,8 @@ import com.er.moc.eca.services.impl.AuthControl;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -43,8 +45,9 @@ public class GroupController implements Serializable {
     @Path("/get/{id}/{key}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getById(@PathParam("id") String id, @PathParam("key") String key) {
-        Long cod = Long.parseLong(id);
+    //@ requires id >= 60;
+    public Response getById(@PathParam("id") int id,@PathParam("key") String key) {
+        Long cod = (long) id;
         return Response.ok(groupModel.getByID(cod)).build();
 
     }
